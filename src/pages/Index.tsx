@@ -1,14 +1,488 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import Icon from "@/components/ui/icon";
 
-const Index = () => {
+const schedule = [
+  {
+    date: "11 марта 2026",
+    topic: "Психопатология: основа понимания психических расстройств",
+    speaker: "Архангельская О.А.",
+    confirmed: true,
+  },
+  {
+    date: "8 апреля 2026",
+    topic: "Тема уточняется",
+    speaker: "Спикер уточняется",
+    confirmed: false,
+  },
+  {
+    date: "13 мая 2026",
+    topic: "Психотерапия панических атак",
+    speaker: "Марченко Т.А.",
+    confirmed: true,
+  },
+  {
+    date: "10 июня 2026",
+    topic: "Призвание или симуляция: кто перед вами — невротик, психопат или психотик?",
+    speaker: "Карпуль А.",
+    confirmed: true,
+  },
+  {
+    date: "8 июля 2026",
+    topic: "Как распознать перенос и контрперенос: разбор ситуаций, когда клиент провоцирует терапевта",
+    speaker: "Мельник Е.",
+    confirmed: true,
+  },
+  {
+    date: "12 августа 2026",
+    topic: "Диагностика, которая лечит: план первичной консультации и формирование альянса",
+    speaker: "Степанова Е.",
+    confirmed: true,
+  },
+  {
+    date: "9 сентября 2026",
+    topic: "Психотерапия шоковых состояний: цели и стратегия работы",
+    speaker: "Пекарская С.",
+    confirmed: true,
+  },
+  {
+    date: "14 октября 2026",
+    topic: "Агрессия в терапии: как говорить и действовать, не рискуя безопасностью клиента и специалиста",
+    speaker: "Чуйкова М.",
+    confirmed: true,
+  },
+];
+
+const faqs = [
+  {
+    q: "Будет ли запись встречи?",
+    a: "Да. Запись доступна всем участникам, оплатившим доступ к конкретной встрече. Ссылка приходит после эфира.",
+  },
+  {
+    q: "Если не смогу прийти — запись останется?",
+    a: "Да. Запись сохраняется, поэтому вы не потеряете доступ к материалу, даже если не смогли подключиться в прямом эфире.",
+  },
+  {
+    q: "Можно ли задать вопрос заранее?",
+    a: "Да. После оплаты вы получите инструкцию — как передать вопрос до начала встречи. Вопросы во время эфира тоже приветствуются.",
+  },
+  {
+    q: "Для какого уровня подготовки подходят встречи?",
+    a: "Встречи рассчитаны на практикующих специалистов и студентов старших курсов профильных программ. Базовые понятия не объясняются с нуля — предполагается, что вы уже в теме.",
+  },
+  {
+    q: "Как приходит доступ после оплаты?",
+    a: "Сразу после оплаты на указанный email приходит письмо со ссылкой на встречу и инструкцией по подключению.",
+  },
+  {
+    q: "Будут ли разборы кейсов?",
+    a: "Да, типовые ситуации разбираются в рамках каждой встречи. Все примеры — обезличенные. Формат образовательный.",
+  },
+  {
+    q: "Это ДПО? Я получу документ об обучении?",
+    a: "Нет. Встречи — это образовательный формат без выдачи документов. Если вам нужен документ о повышении квалификации, посмотрите курсы МЕД-ОБРАЗ.",
+  },
+  {
+    q: "Как встречи связаны с курсами МЕД-ОБРАЗ?",
+    a: "Темы встреч пересекаются с направлениями курсов МЕД-ОБРАЗ. Если тема заинтересовала — после встречи вы найдёте ссылку на соответствующий курс для углублённого изучения.",
+  },
+];
+
+export default function Index() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
+    <div className="min-h-screen bg-[#0f0f0f] text-[#f0ede6] font-body">
+
+      {/* HERO */}
+      <section className="relative min-h-screen flex flex-col justify-between px-6 py-10 md:px-16 overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#f0ede6 1px, transparent 1px), linear-gradient(90deg, #f0ede6 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        <div className="absolute top-[-120px] right-[-80px] w-[500px] h-[500px] rounded-full bg-[#c8f060] opacity-[0.07] blur-[100px] pointer-events-none" />
+
+        <header className="relative z-10 flex items-center justify-between">
+          <span className="font-display text-xl font-semibold tracking-wide text-[#f0ede6]">
+            МЕД-ОБРАЗ
+          </span>
+          <a
+            href="#schedule"
+            className="text-sm text-[#9a9690] hover:text-[#c8f060] transition-colors duration-200"
+          >
+            Расписание
+          </a>
+        </header>
+
+        <div className="relative z-10 flex-1 flex flex-col justify-center pt-16 pb-10 max-w-4xl">
+          <div className="mb-6 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-[#c8f060] font-medium">
+            <span className="w-8 h-px bg-[#c8f060]" />
+            Профессиональная среда
+          </div>
+
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] text-[#f0ede6] mb-8">
+            Встречи,<br />
+            <em className="not-italic text-[#c8f060]">которые работают</em><br />
+            на практику
+          </h1>
+
+          <p className="text-[#9a9690] text-lg md:text-xl max-w-2xl leading-relaxed mb-10">
+            Ежемесячная онлайн-встреча для психологов, психотерапевтов, психиатров и клинических психологов. Тема — спикер — разбор ситуаций — ваши вопросы.
+          </p>
+
+          <div className="flex flex-wrap gap-3 mb-10">
+            {["500 ₽ за встречу", "Запись доступна", "2-я среда месяца"].map((pill) => (
+              <span
+                key={pill}
+                className="px-4 py-2 rounded-full border border-[#c8f060]/40 text-[#c8f060] text-sm font-medium"
+              >
+                {pill}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#price"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#c8f060] text-[#0f0f0f] font-semibold text-base rounded-full hover:bg-[#d9ff6e] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Купить доступ на ближайшую встречу
+              <Icon name="ArrowRight" size={18} />
+            </a>
+            <a
+              href="#schedule"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#f0ede6]/20 text-[#f0ede6] font-medium text-base rounded-full hover:border-[#f0ede6]/50 transition-all duration-200"
+            >
+              Посмотреть расписание
+            </a>
+          </div>
+        </div>
+
+        <div className="relative z-10 flex items-center justify-between text-xs text-[#4a4845] border-t border-[#f0ede6]/10 pt-6">
+          <span>60–75 минут · онлайн</span>
+          <span>2026</span>
+        </div>
+      </section>
+
+      {/* ДЛЯ КОГО */}
+      <section className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Аудитория</p>
+          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+            Для кого эти встречи
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: "Brain", label: "Практикующие психологи" },
+              { icon: "HeartHandshake", label: "Психотерапевты" },
+              { icon: "Stethoscope", label: "Психиатры" },
+              { icon: "BookOpen", label: "Клинические психологи" },
+              { icon: "GraduationCap", label: "Студенты старших курсов профильных программ" },
+            ].map(({ icon, label }) => (
+              <div
+                key={label}
+                className="flex items-start gap-4 p-5 rounded-2xl border border-[#f0ede6]/10 bg-[#161616] hover:border-[#c8f060]/30 transition-colors duration-200"
+              >
+                <div className="mt-0.5 w-9 h-9 flex items-center justify-center rounded-lg bg-[#c8f060]/10 flex-shrink-0">
+                  <Icon name={icon} size={18} className="text-[#c8f060]" />
+                </div>
+                <span className="text-[#f0ede6] font-medium leading-snug pt-1">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* СТРУКТУРА ВСТРЕЧИ */}
+      <section className="px-6 md:px-16 py-24 bg-[#131313] border-t border-[#f0ede6]/10">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Формат</p>
+          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+            Что будет на встрече
+          </h2>
+          <div className="space-y-8">
+            {[
+              {
+                time: "10 мин",
+                title: "Рамка темы и фокус встречи",
+                desc: "Спикер обозначает контекст, ставит вопрос, с которым будет работать встреча.",
+              },
+              {
+                time: "25 мин",
+                title: "Ключевая логика и опоры для решений",
+                desc: "Концептуальный разбор темы: модели, диагностические ориентиры, клинические опоры.",
+              },
+              {
+                time: "15 мин",
+                title: "Типовые ситуации и примеры",
+                desc: "Разбор обезличенных случаев. Акцент на том, где специалисты чаще всего ошибаются.",
+              },
+              {
+                time: "15–25 мин",
+                title: "Вопросы участников",
+                desc: "Живой диалог со спикером. Можно задать вопрос в эфире или прислать заранее.",
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex gap-6 md:gap-10">
+                <div className="flex-shrink-0 text-right w-20 md:w-24 pt-1">
+                  <span className="text-[#c8f060] text-sm font-medium">{item.time}</span>
+                </div>
+                <div className="flex-shrink-0 flex flex-col items-center">
+                  <div className="w-8 h-8 flex items-center justify-center rounded-full border border-[#c8f060]/40 text-[#c8f060] text-xs font-semibold">
+                    {i + 1}
+                  </div>
+                  {i < 3 && <div className="w-px flex-1 bg-[#f0ede6]/10 mt-2" />}
+                </div>
+                <div className="flex-1 pb-8 last:pb-0">
+                  <h3 className="font-display text-2xl font-semibold text-[#f0ede6] mb-2">{item.title}</h3>
+                  <p className="text-[#9a9690] leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ЧТО ВЫ ПОЛУЧИТЕ */}
+      <section className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Результат</p>
+          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+            Что вы получите
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[
+              {
+                icon: "Video",
+                title: "Запись встречи",
+                desc: "Доступна всем участникам после эфира. Можно пересматривать в удобное время.",
+              },
+              {
+                icon: "MessageCircle",
+                title: "Ответы на вопросы",
+                desc: "Вопросы можно задать в эфире или прислать заранее — спикер отвечает в рамках встречи.",
+              },
+              {
+                icon: "AlertCircle",
+                title: "Разбор типичных ошибок",
+                desc: "Каждая встреча включает анализ ситуаций, где специалисты чаще всего теряют ориентир.",
+              },
+              {
+                icon: "Link",
+                title: "Маршрут продолжения",
+                desc: "Тема заинтересовала? После встречи вы найдёте ссылку на соответствующий курс МЕД-ОБРАЗ для углублённого изучения.",
+              },
+              {
+                icon: "Users",
+                title: "Профессиональный контекст",
+                desc: "Живое общение со спикером и другими участниками — в рамках образовательного формата.",
+              },
+              {
+                icon: "FileText",
+                title: "Материалы по теме",
+                desc: "Ссылки и дополнительные материалы — по теме встречи, если предусмотрено.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#161616] hover:bg-[#1a1a1a] transition-colors duration-200"
+              >
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#c8f060]/10 mb-4">
+                  <Icon name={item.icon} size={20} className="text-[#c8f060]" />
+                </div>
+                <h3 className="font-display text-xl font-semibold text-[#f0ede6] mb-2">{item.title}</h3>
+                <p className="text-[#9a9690] leading-relaxed text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* РАСПИСАНИЕ */}
+      <section id="schedule" className="px-6 md:px-16 py-24 bg-[#131313] border-t border-[#f0ede6]/10">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Расписание</p>
+          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+            Встречи 2026 года
+          </h2>
+          <div className="space-y-3">
+            {schedule.map((item, i) => (
+              <div
+                key={i}
+                className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#c8f060]/30 transition-all duration-200"
+              >
+                <div className="flex-shrink-0 w-full md:w-32">
+                  <div className="font-display text-2xl font-semibold text-[#f0ede6] leading-none">
+                    {item.date.split(" ")[0]}
+                  </div>
+                  <div className="text-sm text-[#9a9690] mt-0.5">
+                    {item.date.split(" ").slice(1).join(" ")}
+                  </div>
+                </div>
+                <div className="hidden md:block w-px h-10 bg-[#f0ede6]/10 flex-shrink-0" />
+                <div className="flex-1">
+                  <p className={`font-medium leading-snug ${!item.confirmed ? "text-[#9a9690] italic" : "text-[#f0ede6]"}`}>
+                    {item.topic}
+                  </p>
+                  <p className="text-sm text-[#9a9690] mt-1">{item.speaker}</p>
+                </div>
+                <div className="flex-shrink-0">
+                  {item.confirmed ? (
+                    <a
+                      href="#price"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#c8f060] text-[#0f0f0f] text-sm font-semibold rounded-full hover:bg-[#d9ff6e] transition-all duration-200 whitespace-nowrap"
+                    >
+                      Купить доступ
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center px-5 py-2.5 border border-[#f0ede6]/15 text-[#4a4845] text-sm rounded-full whitespace-nowrap">
+                      Скоро
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ЦЕНА */}
+      <section id="price" className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            <div className="flex-1">
+              <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Доступ</p>
+              <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-6">
+                Цена и что входит
+              </h2>
+              <p className="text-[#9a9690] text-lg leading-relaxed max-w-lg">
+                Вы оплачиваете доступ к конкретной встрече. Никаких подписок — каждый раз отдельно.
+              </p>
+            </div>
+            <div className="w-full lg:w-[420px] rounded-3xl border border-[#c8f060]/30 bg-[#161616] p-8">
+              <div className="mb-8">
+                <div className="font-display text-7xl font-semibold text-[#c8f060] leading-none">500 ₽</div>
+                <div className="text-[#9a9690] mt-2">за одну встречу</div>
+              </div>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Участие в онлайн-эфире",
+                  "Запись встречи после эфира",
+                  "Ответы на вопросы участников",
+                  "Ссылки и материалы по теме (если предусмотрено)",
+                  "Ссылка на соответствующий курс МЕД-ОБРАЗ",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <Icon name="Check" size={16} className="text-[#c8f060] mt-0.5 flex-shrink-0" />
+                    <span className="text-[#f0ede6] text-sm leading-snug">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#"
+                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#c8f060] text-[#0f0f0f] font-semibold rounded-2xl hover:bg-[#d9ff6e] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+              >
+                Оплатить 500 ₽ и получить доступ
+                <Icon name="ArrowRight" size={18} />
+              </a>
+              <p className="text-center text-xs text-[#4a4845] mt-4">
+                Доступ приходит на email сразу после оплаты
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* О ПРОЕКТЕ */}
+      <section className="px-6 md:px-16 py-24 bg-[#131313] border-t border-[#f0ede6]/10">
+        <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
+          <div className="flex-1">
+            <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">О проекте</p>
+            <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-6">
+              МЕД-ОБРАЗ
+            </h2>
+            <p className="text-[#9a9690] text-lg leading-relaxed mb-6">
+              «Профессиональная среда» — образовательный проект МЕД-ОБРАЗ для специалистов в области психического здоровья. Встречи проходят каждую вторую среду месяца, онлайн, в формате 60–75 минут.
+            </p>
+            <p className="text-[#9a9690] leading-relaxed">
+              Темы встреч связаны с направлениями курсов МЕД-ОБРАЗ: после встречи можно продолжить изучение темы в рамках полноценной программы повышения квалификации.
+            </p>
+          </div>
+          <div className="w-full lg:w-72 flex-shrink-0 space-y-4">
+            {[
+              { icon: "Calendar", title: "Каждая вторая среда", sub: "ежемесячно, вечером" },
+              { icon: "Clock", title: "60–75 минут", sub: "онлайн-формат" },
+              { icon: "Wifi", title: "Запись доступна", sub: "после эфира, участникам" },
+            ].map((card) => (
+              <div key={card.title} className="p-5 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f]">
+                <Icon name={card.icon} size={20} className="text-[#c8f060] mb-3" />
+                <div className="font-display text-xl font-semibold text-[#f0ede6]">{card.title}</div>
+                <div className="text-[#9a9690] text-sm mt-1">{card.sub}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Вопросы</p>
+          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+            Часто спрашивают
+          </h2>
+          <div className="space-y-2">
+            {faqs.map((item, i) => (
+              <div key={i} className="border border-[#f0ede6]/10 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-[#161616] transition-colors duration-150"
+                >
+                  <span className="font-medium text-[#f0ede6]">{item.q}</span>
+                  <Icon
+                    name={openFaq === i ? "Minus" : "Plus"}
+                    size={18}
+                    className="flex-shrink-0 text-[#c8f060]"
+                  />
+                </button>
+                {openFaq === i && (
+                  <div className="px-6 pb-5 text-[#9a9690] leading-relaxed text-sm border-t border-[#f0ede6]/10 pt-4">
+                    {item.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ДИСКЛЕЙМЕР */}
+      <div className="px-6 md:px-16 py-8 border-t border-[#f0ede6]/10">
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs text-[#4a4845]">
+            Кейсы обсуждаются обезличенно. Встреча носит образовательный характер.
+          </p>
+        </div>
       </div>
+
+      {/* FOOTER */}
+      <footer className="px-6 md:px-16 py-12 border-t border-[#f0ede6]/10 bg-[#0a0a0a]">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between gap-8">
+          <div>
+            <div className="font-display text-2xl font-semibold text-[#f0ede6] mb-1">МЕД-ОБРАЗ</div>
+            <div className="text-xs text-[#4a4845]">АНО ДПО «НОЦ СМТ»</div>
+          </div>
+          <div className="flex flex-col gap-2 text-sm text-[#9a9690]">
+            <a href="#" className="hover:text-[#c8f060] transition-colors duration-150">Ссылка на оплату</a>
+            <a href="#" className="hover:text-[#c8f060] transition-colors duration-150">Курсы МЕД-ОБРАЗ</a>
+            <a href="#" className="hover:text-[#c8f060] transition-colors duration-150">Контакты</a>
+          </div>
+        </div>
+      </footer>
+
     </div>
   );
-};
-
-export default Index;
+}

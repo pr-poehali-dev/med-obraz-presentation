@@ -273,18 +273,23 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-3 md:pt-[140px] flex-shrink-0">
+          <div className="flex flex-col gap-4 md:pt-[140px] flex-shrink-0 w-full md:w-[220px]">
             {[
-              { label: "500 ₽ за встречу", icon: "Banknote" },
-              { label: "Запись доступна", icon: "Play" },
-              { label: "2-я среда месяца", icon: "Calendar" },
-            ].map(({ label, icon }) => (
+              { label: "500 ₽", sub: "за встречу", icon: "Banknote" },
+              { label: "Запись", sub: "доступна после эфира", icon: "Play" },
+              { label: "2-я среда", sub: "каждого месяца", icon: "Calendar" },
+            ].map(({ label, sub, icon }) => (
               <div
                 key={label}
-                className="flex items-center gap-3 px-5 py-3 rounded-2xl border border-[#9B2242]/30 bg-[#9B2242]/05"
+                className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-[#9B2242]/30 bg-[#9B2242]/[0.06]"
               >
-                <Icon name={icon} size={16} className="text-[#9B2242] flex-shrink-0" />
-                <span className="text-[#f0ede6] text-sm font-medium">{label}</span>
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#9B2242]/15 flex-shrink-0">
+                  <Icon name={icon} size={20} className="text-[#9B2242]" />
+                </div>
+                <div>
+                  <div className="text-[#f0ede6] text-lg font-semibold leading-tight">{label}</div>
+                  <div className="text-[#9a9690] text-xs mt-0.5">{sub}</div>
+                </div>
               </div>
             ))}
           </div>

@@ -517,9 +517,7 @@ export default function Index() {
                 Выбрать тему
                 <Icon name="ArrowRight" size={18} />
               </a>
-              <p className="text-center text-xs text-[#4a4845] mt-4">
-                Доступ приходит на email сразу после оплаты
-              </p>
+
             </div>
           </div>
         </div>
@@ -557,14 +555,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ДИСКЛЕЙМЕР */}
-      <div className="px-6 md:px-16 py-8 border-t border-[#f0ede6]/10">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs text-[#4a4845]">
-            Кейсы обсуждаются обезличенно. Встреча носит образовательный характер.
-          </p>
-        </div>
-      </div>
+
 
       {/* FOOTER */}
 

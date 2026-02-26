@@ -103,7 +103,7 @@ export default function Index() {
             backgroundSize: "60px 60px",
           }}
         />
-        <div className="absolute top-[-120px] right-[-80px] w-[500px] h-[500px] rounded-full bg-[#c8f060] opacity-[0.07] blur-[100px] pointer-events-none" />
+        <div className="absolute top-[-120px] right-[-80px] w-[500px] h-[500px] rounded-full bg-[#9B2242] opacity-[0.07] blur-[100px] pointer-events-none" />
 
         <header className="relative z-10 flex items-center justify-between">
           <span className="font-display text-xl font-semibold tracking-wide text-[#f0ede6]">
@@ -111,21 +111,21 @@ export default function Index() {
           </span>
           <a
             href="#schedule"
-            className="text-sm text-[#9a9690] hover:text-[#c8f060] transition-colors duration-200"
+            className="text-sm text-[#9a9690] hover:text-[#9B2242] transition-colors duration-200"
           >
             Расписание
           </a>
         </header>
 
         <div className="relative z-10 flex-1 flex flex-col justify-center pt-16 pb-10 max-w-4xl">
-          <div className="mb-6 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-[#c8f060] font-medium">
-            <span className="w-8 h-px bg-[#c8f060]" />
+          <div className="mb-6 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium">
+            <span className="w-8 h-px bg-[#9B2242]" />
             Профессиональная среда
           </div>
 
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] text-[#f0ede6] mb-8">
             Встречи,<br />
-            <em className="not-italic text-[#c8f060]">которые работают</em><br />
+            <em className="not-italic text-[#9B2242]">которые работают</em><br />
             на практику
           </h1>
 
@@ -137,7 +137,7 @@ export default function Index() {
             {["500 ₽ за встречу", "Запись доступна", "2-я среда месяца"].map((pill) => (
               <span
                 key={pill}
-                className="px-4 py-2 rounded-full border border-[#c8f060]/40 text-[#c8f060] text-sm font-medium"
+                className="px-4 py-2 rounded-full border border-[#9B2242]/40 text-[#9B2242] text-sm font-medium"
               >
                 {pill}
               </span>
@@ -147,7 +147,7 @@ export default function Index() {
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="#price"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#c8f060] text-[#0f0f0f] font-semibold text-base rounded-full hover:bg-[#d9ff6e] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9B2242] text-white font-semibold text-base rounded-full hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
             >
               Купить доступ на ближайшую встречу
               <Icon name="ArrowRight" size={18} />
@@ -170,7 +170,7 @@ export default function Index() {
       {/* ДЛЯ КОГО */}
       <section className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
-          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Аудитория</p>
+          <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Аудитория</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
             Для кого эти встречи
           </h2>
@@ -184,10 +184,10 @@ export default function Index() {
             ].map(({ icon, label }) => (
               <div
                 key={label}
-                className="flex items-start gap-4 p-5 rounded-2xl border border-[#f0ede6]/10 bg-[#161616] hover:border-[#c8f060]/30 transition-colors duration-200"
+                className="flex items-start gap-4 p-5 rounded-2xl border border-[#f0ede6]/10 bg-[#161616] hover:border-[#9B2242]/30 transition-colors duration-200"
               >
-                <div className="mt-0.5 w-9 h-9 flex items-center justify-center rounded-lg bg-[#c8f060]/10 flex-shrink-0">
-                  <Icon name={icon} size={18} className="text-[#c8f060]" />
+                <div className="mt-0.5 w-9 h-9 flex items-center justify-center rounded-lg bg-[#9B2242]/10 flex-shrink-0">
+                  <Icon name={icon} size={18} className="text-[#9B2242]" />
                 </div>
                 <span className="text-[#f0ede6] font-medium leading-snug pt-1">{label}</span>
               </div>
@@ -199,7 +199,7 @@ export default function Index() {
       {/* СТРУКТУРА ВСТРЕЧИ */}
       <section className="px-6 md:px-16 py-24 bg-[#131313] border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
-          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Формат</p>
+          <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Формат</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
             Что будет на встрече
           </h2>
@@ -228,10 +228,10 @@ export default function Index() {
             ].map((item, i) => (
               <div key={i} className="flex gap-6 md:gap-10">
                 <div className="flex-shrink-0 text-right w-20 md:w-24 pt-1">
-                  <span className="text-[#c8f060] text-sm font-medium">{item.time}</span>
+                  <span className="text-[#9B2242] text-sm font-medium">{item.time}</span>
                 </div>
                 <div className="flex-shrink-0 flex flex-col items-center">
-                  <div className="w-8 h-8 flex items-center justify-center rounded-full border border-[#c8f060]/40 text-[#c8f060] text-xs font-semibold">
+                  <div className="w-8 h-8 flex items-center justify-center rounded-full border border-[#9B2242]/40 text-[#9B2242] text-xs font-semibold">
                     {i + 1}
                   </div>
                   {i < 3 && <div className="w-px flex-1 bg-[#f0ede6]/10 mt-2" />}
@@ -249,7 +249,7 @@ export default function Index() {
       {/* ЧТО ВЫ ПОЛУЧИТЕ */}
       <section className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
-          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Результат</p>
+          <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Результат</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
             Что вы получите
           </h2>
@@ -290,8 +290,8 @@ export default function Index() {
                 key={i}
                 className="p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#161616] hover:bg-[#1a1a1a] transition-colors duration-200"
               >
-                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#c8f060]/10 mb-4">
-                  <Icon name={item.icon} size={20} className="text-[#c8f060]" />
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#9B2242]/10 mb-4">
+                  <Icon name={item.icon} size={20} className="text-[#9B2242]" />
                 </div>
                 <h3 className="font-display text-xl font-semibold text-[#f0ede6] mb-2">{item.title}</h3>
                 <p className="text-[#9a9690] leading-relaxed text-sm">{item.desc}</p>
@@ -304,7 +304,7 @@ export default function Index() {
       {/* РАСПИСАНИЕ */}
       <section id="schedule" className="px-6 md:px-16 py-24 bg-[#131313] border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
-          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Расписание</p>
+          <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Расписание</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
             Встречи 2026 года
           </h2>
@@ -312,7 +312,7 @@ export default function Index() {
             {schedule.map((item, i) => (
               <div
                 key={i}
-                className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#c8f060]/30 transition-all duration-200"
+                className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#9B2242]/30 transition-all duration-200"
               >
                 <div className="flex-shrink-0 w-full md:w-32">
                   <div className="font-display text-2xl font-semibold text-[#f0ede6] leading-none">
@@ -333,7 +333,7 @@ export default function Index() {
                   {item.confirmed ? (
                     <a
                       href="#price"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#c8f060] text-[#0f0f0f] text-sm font-semibold rounded-full hover:bg-[#d9ff6e] transition-all duration-200 whitespace-nowrap"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#9B2242] text-white text-sm font-semibold rounded-full hover:bg-[#b82a50] transition-all duration-200 whitespace-nowrap"
                     >
                       Купить доступ
                     </a>
@@ -354,7 +354,7 @@ export default function Index() {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
             <div className="flex-1">
-              <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Доступ</p>
+              <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Доступ</p>
               <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-6">
                 Цена и что входит
               </h2>
@@ -362,9 +362,9 @@ export default function Index() {
                 Вы оплачиваете доступ к конкретной встрече. Никаких подписок — каждый раз отдельно.
               </p>
             </div>
-            <div className="w-full lg:w-[420px] rounded-3xl border border-[#c8f060]/30 bg-[#161616] p-8">
+            <div className="w-full lg:w-[420px] rounded-3xl border border-[#9B2242]/30 bg-[#161616] p-8">
               <div className="mb-8">
-                <div className="font-display text-7xl font-semibold text-[#c8f060] leading-none">500 ₽</div>
+                <div className="font-display text-7xl font-semibold text-[#9B2242] leading-none">500 ₽</div>
                 <div className="text-[#9a9690] mt-2">за одну встречу</div>
               </div>
               <ul className="space-y-3 mb-8">
@@ -376,14 +376,14 @@ export default function Index() {
                   "Ссылка на соответствующий курс МЕД-ОБРАЗ",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <Icon name="Check" size={16} className="text-[#c8f060] mt-0.5 flex-shrink-0" />
+                    <Icon name="Check" size={16} className="text-[#9B2242] mt-0.5 flex-shrink-0" />
                     <span className="text-[#f0ede6] text-sm leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>
               <a
                 href="#"
-                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#c8f060] text-[#0f0f0f] font-semibold rounded-2xl hover:bg-[#d9ff6e] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
               >
                 Оплатить 500 ₽ и получить доступ
                 <Icon name="ArrowRight" size={18} />
@@ -400,7 +400,7 @@ export default function Index() {
       <section className="px-6 md:px-16 py-24 bg-[#131313] border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
           <div className="flex-1">
-            <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">О проекте</p>
+            <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">О проекте</p>
             <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-6">
               МЕД-ОБРАЗ
             </h2>
@@ -418,7 +418,7 @@ export default function Index() {
               { icon: "Wifi", title: "Запись доступна", sub: "после эфира, участникам" },
             ].map((card) => (
               <div key={card.title} className="p-5 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f]">
-                <Icon name={card.icon} size={20} className="text-[#c8f060] mb-3" />
+                <Icon name={card.icon} size={20} className="text-[#9B2242] mb-3" />
                 <div className="font-display text-xl font-semibold text-[#f0ede6]">{card.title}</div>
                 <div className="text-[#9a9690] text-sm mt-1">{card.sub}</div>
               </div>
@@ -430,7 +430,7 @@ export default function Index() {
       {/* FAQ */}
       <section className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
         <div className="max-w-3xl mx-auto">
-          <p className="text-xs tracking-[0.2em] uppercase text-[#c8f060] mb-4 font-medium">Вопросы</p>
+          <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Вопросы</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
             Часто спрашивают
           </h2>
@@ -445,7 +445,7 @@ export default function Index() {
                   <Icon
                     name={openFaq === i ? "Minus" : "Plus"}
                     size={18}
-                    className="flex-shrink-0 text-[#c8f060]"
+                    className="flex-shrink-0 text-[#9B2242]"
                   />
                 </button>
                 {openFaq === i && (
@@ -476,9 +476,9 @@ export default function Index() {
             <div className="text-xs text-[#4a4845]">АНО ДПО «НОЦ СМТ»</div>
           </div>
           <div className="flex flex-col gap-2 text-sm text-[#9a9690]">
-            <a href="#" className="hover:text-[#c8f060] transition-colors duration-150">Ссылка на оплату</a>
-            <a href="#" className="hover:text-[#c8f060] transition-colors duration-150">Курсы МЕД-ОБРАЗ</a>
-            <a href="#" className="hover:text-[#c8f060] transition-colors duration-150">Контакты</a>
+            <a href="#" className="hover:text-[#9B2242] transition-colors duration-150">Ссылка на оплату</a>
+            <a href="#" className="hover:text-[#9B2242] transition-colors duration-150">Курсы МЕД-ОБРАЗ</a>
+            <a href="#" className="hover:text-[#9B2242] transition-colors duration-150">Контакты</a>
           </div>
         </div>
       </footer>

@@ -265,18 +265,17 @@ export default function Index() {
             <p className="text-[#9a9690] text-lg md:text-xl leading-relaxed mb-4">
               Ежемесячная онлайн-встреча для психологов, психотерапевтов, психиатров и клинических психологов. Тема — спикер — разбор ситуаций — ваши вопросы.
             </p>
-            <p className="text-[#9a9690] text-base leading-relaxed mb-6">
-              Встречи проходят каждую вторую среду месяца. Темы связаны с направлениями курсов МедОбраз — после встречи можно продолжить изучение темы в рамках полноценной программы повышения квалификации.
-            </p>
             <a
               href="https://rpa-msk.ru/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 px-4 py-3 rounded-2xl border border-[#f0ede6]/10 bg-[#161616] hover:border-[#9B2242]/40 hover:bg-[#1a1a1a] transition-all duration-200 group"
+              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-[#f0ede6]/10 bg-[#161616] hover:border-[#9B2242]/40 hover:bg-[#1a1a1a] transition-all duration-200 group mt-6"
             >
-              <Icon name="Award" size={18} className="text-[#9B2242] flex-shrink-0 mt-0.5" />
-              <p className="text-[#9a9690] text-sm leading-snug">
-                Встречи ведут эксперты <span className="text-[#f0ede6] font-medium group-hover:text-[#9B2242] transition-colors duration-200">Московского отделения Российской психотерапевтической ассоциации</span>
+              <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#9B2242]/15 flex-shrink-0">
+                <Icon name="Award" size={20} className="text-[#9B2242]" />
+              </div>
+              <p className="text-[#9a9690] text-base leading-snug">
+                Встречи ведут эксперты <span className="text-[#f0ede6] font-semibold group-hover:text-[#9B2242] transition-colors duration-200">Московского отделения Российской психотерапевтической ассоциации</span>
               </p>
             </a>
           </div>
@@ -293,7 +292,7 @@ export default function Index() {
                 { icon: "Play", text: "Запись встречи — доступна 7 дней после эфира" },
                 { icon: "MessageCircle", text: "Ответы на вопросы участников" },
                 { icon: "FileText", text: "Материалы по теме" },
-                { icon: "Link", text: "Ссылка на курс МедОбраз по теме" },
+
               ].map(({ icon, text }) => (
                 <li key={text} className="flex items-start gap-3">
                   <Icon name={icon} size={15} className="text-[#9B2242] mt-0.5 flex-shrink-0" />

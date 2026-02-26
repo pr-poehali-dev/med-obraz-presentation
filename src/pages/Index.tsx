@@ -273,7 +273,7 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 md:pt-[140px] flex-shrink-0 w-full md:w-[220px]">
+          <div className="flex flex-col gap-4 md:pt-0 flex-shrink-0 w-full md:w-[220px] justify-center">
             {[
               { label: "500 ₽", sub: "за встречу", icon: "Banknote" },
               { label: "Запись", sub: "доступна после эфира", icon: "Play" },

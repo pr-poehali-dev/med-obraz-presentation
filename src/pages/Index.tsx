@@ -567,19 +567,7 @@ export default function Index() {
       </div>
 
       {/* FOOTER */}
-      <footer className="px-6 md:px-16 py-12 border-t border-[#f0ede6]/10 bg-[#0a0a0a]">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between gap-8">
-          <div>
-            <div className="font-display text-2xl font-semibold text-[#f0ede6] mb-1">МЕД-ОБРАЗ</div>
-            <div className="text-xs text-[#4a4845]">АНО ДПО «НОЦ СМТ»</div>
-          </div>
-          <div className="flex flex-col gap-2 text-sm text-[#9a9690]">
-            <a href="#" className="hover:text-[#9B2242] transition-colors duration-150">Ссылка на оплату</a>
-            <a href="#" className="hover:text-[#9B2242] transition-colors duration-150">Курсы МЕД-ОБРАЗ</a>
-            <a href="#" className="hover:text-[#9B2242] transition-colors duration-150">Контакты</a>
-          </div>
-        </div>
-      </footer>
+
 
     </div>
   );

@@ -219,7 +219,7 @@ export default function Index() {
       )}
 
       {/* HERO */}
-      <section className="relative min-h-screen flex flex-col justify-between px-6 py-10 md:px-16 overflow-hidden">
+      <section className="relative flex flex-col px-6 py-10 md:px-16 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{

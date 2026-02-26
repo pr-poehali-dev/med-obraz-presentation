@@ -252,8 +252,8 @@ export default function Index() {
           </a>
         </header>
 
-        <div className="relative z-10 flex-1 flex flex-col md:flex-row items-start justify-between gap-10 pt-16 pb-10">
-          <div className="max-w-2xl">
+        <div className="relative z-10 flex-1 flex flex-col lg:flex-row items-start gap-12 pt-16 pb-10">
+          <div className="flex-1 min-w-0">
             <div className="mb-6 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium">
               <span className="w-8 h-px bg-[#9B2242]" />
               Профессиональная среда
@@ -273,25 +273,33 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 md:pt-0 flex-shrink-0 w-full md:w-[220px] justify-center">
-            {[
-              { label: "500 ₽", sub: "за встречу", icon: "Banknote" },
-              { label: "Запись", sub: "доступна после эфира", icon: "Play" },
-              { label: "2-я среда", sub: "каждого месяца", icon: "Calendar" },
-            ].map(({ label, sub, icon }) => (
-              <div
-                key={label}
-                className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-[#9B2242]/30 bg-[#9B2242]/[0.06]"
-              >
-                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#9B2242]/15 flex-shrink-0">
-                  <Icon name={icon} size={20} className="text-[#9B2242]" />
-                </div>
-                <div>
-                  <div className="text-[#f0ede6] text-lg font-semibold leading-tight">{label}</div>
-                  <div className="text-[#9a9690] text-xs mt-0.5">{sub}</div>
-                </div>
-              </div>
-            ))}
+          <div className="w-full lg:w-[340px] flex-shrink-0 rounded-3xl border border-[#9B2242]/30 bg-[#161616] p-7 self-end">
+            <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium mb-5">Доступ</p>
+            <div className="mb-6">
+              <div className="font-display text-6xl font-semibold text-[#f0ede6] leading-none">500 ₽</div>
+              <div className="text-[#9a9690] text-sm mt-2">за одну встречу · без подписки</div>
+            </div>
+            <ul className="space-y-3 mb-7">
+              {[
+                { icon: "Video", text: "Участие в онлайн-эфире" },
+                { icon: "Play", text: "Запись встречи после эфира" },
+                { icon: "MessageCircle", text: "Ответы на вопросы участников" },
+                { icon: "FileText", text: "Материалы по теме" },
+                { icon: "Link", text: "Ссылка на курс МедОбраз по теме" },
+              ].map(({ icon, text }) => (
+                <li key={text} className="flex items-start gap-3">
+                  <Icon name={icon} size={15} className="text-[#9B2242] mt-0.5 flex-shrink-0" />
+                  <span className="text-[#9a9690] text-sm leading-snug">{text}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#schedule"
+              className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+            >
+              Выбрать встречу
+              <Icon name="ArrowRight" size={18} />
+            </a>
           </div>
         </div>
 
@@ -483,50 +491,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* ЦЕНА */}
-      <section id="price" className="px-6 md:px-16 py-14 border-t border-[#f0ede6]/10">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12 items-start">
-            <div className="flex-1">
-              <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Доступ</p>
-              <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-6">
-                Цена и что входит
-              </h2>
-              <p className="text-[#9a9690] text-lg leading-relaxed max-w-lg">
-                Вы оплачиваете доступ к конкретной встрече. Никаких подписок — каждый раз отдельно.
-              </p>
-            </div>
-            <div className="w-full lg:w-[420px] rounded-3xl border border-[#9B2242]/30 bg-[#161616] p-8">
-              <div className="mb-8">
-                <div className="font-display text-7xl font-semibold text-[#9B2242] leading-none">500 ₽</div>
-                <div className="text-[#9a9690] mt-2">за одну встречу</div>
-              </div>
-              <ul className="space-y-3 mb-8">
-                {[
-                  "Участие в онлайн-эфире",
-                  "Запись встречи после эфира",
-                  "Ответы на вопросы участников",
-                  "Ссылки и материалы по теме (если предусмотрено)",
-                  "Ссылка на соответствующий курс МЕД-ОБРАЗ",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <Icon name="Check" size={16} className="text-[#9B2242] mt-0.5 flex-shrink-0" />
-                    <span className="text-[#f0ede6] text-sm leading-snug">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="#schedule"
-                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
-              >
-                Выбрать тему
-                <Icon name="ArrowRight" size={18} />
-              </a>
 
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* FAQ */}
       <section className="px-6 md:px-16 py-14 border-t border-[#f0ede6]/10">

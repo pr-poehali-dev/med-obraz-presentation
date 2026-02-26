@@ -231,15 +231,23 @@ export default function Index() {
         <div className="absolute top-[-120px] right-[-80px] w-[500px] h-[500px] rounded-full bg-[#9B2242] opacity-[0.07] blur-[100px] pointer-events-none" />
 
         <header className="relative z-10 flex items-center justify-between">
-          <span className="font-display text-xl font-semibold tracking-wide text-[#f0ede6]">
-            МЕД-ОБРАЗ
-          </span>
-          <a
-            href="#schedule"
-            className="text-sm text-[#9a9690] hover:text-[#9B2242] transition-colors duration-200"
-          >
-            Расписание
-          </a>
+          <div>
+            <span className="font-display text-xl font-semibold tracking-wide text-[#f0ede6]">
+              МЕД-ОБРАЗ
+            </span>
+            <p className="text-[11px] text-[#4a4845] mt-0.5 leading-tight">
+              АНО ДПО «НОЦ СМТ» при поддержке Союза охраны психического здоровья
+            </p>
+          </div>
+          <div className="text-right">
+            <a
+              href="#schedule"
+              className="block text-base font-semibold text-[#9B2242] hover:text-[#b82a50] transition-colors duration-200"
+            >
+              Расписание
+            </a>
+            <p className="text-[11px] text-[#4a4845] mt-0.5">Профессиональная среда · по средам</p>
+          </div>
         </header>
 
         <div className="relative z-10 flex-1 flex flex-col justify-center pt-16 pb-10 max-w-4xl">
@@ -289,10 +297,7 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="relative z-10 flex items-center justify-between text-xs text-[#4a4845] border-t border-[#f0ede6]/10 pt-6">
-          <span>60–75 минут · онлайн</span>
-          <span>2026</span>
-        </div>
+
       </section>
 
       {/* ДЛЯ КОГО */}

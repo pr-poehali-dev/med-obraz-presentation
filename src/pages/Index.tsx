@@ -1,12 +1,41 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const schedule = [
+type ScheduleItem = {
+  date: string;
+  topic: string;
+  speaker: string;
+  confirmed: boolean;
+  detail?: {
+    title: string;
+    speakerFull: string;
+    speakerBio: string;
+    speakerPhoto: string;
+    description: string[];
+    registerUrl: string;
+  };
+};
+
+const schedule: ScheduleItem[] = [
   {
     date: "11 марта 2026",
-    topic: "Психопатология: основа понимания психических расстройств",
-    speaker: "Архангельская О.А.",
+    topic: "Зачем психологу психиатрия: как работать с трудными случаями и не оставаться в одиночестве",
+    speaker: "Архангельская Н.В.",
     confirmed: true,
+    detail: {
+      title: "«Зачем психологу психиатрия: как работать с трудными случаями и не оставаться в одиночестве»",
+      speakerFull: "Архангельская Наталия Владимировна",
+      speakerBio: "Клинический психолог, гештальт-терапевт, социальный психолог, семейный психолог, преподаватель педагогики и психологии.",
+      speakerPhoto: "https://cdn.poehali.dev/projects/5c2d535a-bd60-400c-8b75-58203cc5db1c/bucket/eebaddd1-2c41-4eb6-9571-f7e65d1d01f7.JPG",
+      description: [
+        "Мы разбираем, как работать с неопределённостью, в каких ситуациях требуется консультация психиатра и как выстроить сотрудничество так, чтобы сохранить контакт с клиентом и не выходить за рамки своих компетенций.",
+        "Клинические кейсы. О ориентирах, тревожных симптомах и корректном направлении к психиатру — без постановки диагноза.",
+        "Что такое психопатология. Почему на начальном этапе часто невозможно достоверно понять, «что это такое», и как не попасть в ловушку преждевременной уверенности.",
+        "Когда стоит обращаться к психиатру: не по «ярлыку», а по риску и динамике.",
+        "Как сообщить клиенту о необходимости консультации психиатра, чтобы не усилить стигматизацию и не разрушить альянс.",
+      ],
+      registerUrl: "#",
+    },
   },
   {
     date: "8 апреля 2026",
@@ -87,11 +116,77 @@ const faqs = [
   },
 ];
 
+function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void }) {
+  const d = item.detail!;
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-[#161616] border border-[#f0ede6]/10 shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-[#0f0f0f] border border-[#f0ede6]/10 text-[#9a9690] hover:text-[#f0ede6] transition-colors"
+        >
+          <Icon name="X" size={16} />
+        </button>
+
+        <div className="p-6 md:p-8">
+          <div className="mb-1 text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium">
+            {item.date}
+          </div>
+          <h2 className="font-display text-xl md:text-2xl font-semibold text-[#f0ede6] leading-snug mb-6">
+            {d.title}
+          </h2>
+
+          <div className="flex items-start gap-5 mb-6 p-5 rounded-2xl bg-[#0f0f0f] border border-[#f0ede6]/10">
+            <img
+              src={d.speakerPhoto}
+              alt={d.speakerFull}
+              className="w-20 h-24 object-cover rounded-xl flex-shrink-0 object-top"
+            />
+            <div>
+              <p className="font-display text-lg font-semibold text-[#f0ede6] leading-snug mb-1">
+                {d.speakerFull}
+              </p>
+              <p className="text-sm text-[#9a9690] leading-relaxed">{d.speakerBio}</p>
+            </div>
+          </div>
+
+          <div className="space-y-3 mb-8">
+            {d.description.map((para, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#9B2242] flex-shrink-0" />
+                <p className="text-[#c8c3bb] text-sm leading-relaxed">{para}</p>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href={d.registerUrl}
+            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+          >
+            Зарегистрироваться
+            <Icon name="ArrowRight" size={18} />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeEvent, setActiveEvent] = useState<ScheduleItem | null>(null);
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-[#f0ede6] font-body">
+      {activeEvent?.detail && (
+        <EventModal item={activeEvent} onClose={() => setActiveEvent(null)} />
+      )}
 
       {/* HERO */}
       <section className="relative min-h-screen flex flex-col justify-between px-6 py-10 md:px-16 overflow-hidden">
@@ -312,7 +407,8 @@ export default function Index() {
             {schedule.map((item, i) => (
               <div
                 key={i}
-                className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#9B2242]/30 transition-all duration-200"
+                onClick={() => item.detail && setActiveEvent(item)}
+                className={`group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#9B2242]/30 transition-all duration-200 ${item.detail ? "cursor-pointer hover:bg-[#141414]" : ""}`}
               >
                 <div className="flex-shrink-0 w-full md:w-32">
                   <div className="font-display text-2xl font-semibold text-[#f0ede6] leading-none">
@@ -329,10 +425,17 @@ export default function Index() {
                   </p>
                   <p className="text-sm text-[#9a9690] mt-1">{item.speaker}</p>
                 </div>
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 flex items-center gap-3">
+                  {item.detail && (
+                    <span className="text-xs text-[#9B2242] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <Icon name="Info" size={13} />
+                      подробнее
+                    </span>
+                  )}
                   {item.confirmed ? (
                     <a
                       href="#price"
+                      onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#9B2242] text-white text-sm font-semibold rounded-full hover:bg-[#b82a50] transition-all duration-200 whitespace-nowrap"
                     >
                       Купить доступ

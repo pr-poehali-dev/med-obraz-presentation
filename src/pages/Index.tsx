@@ -273,7 +273,7 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="w-full lg:w-[340px] flex-shrink-0 rounded-3xl border border-[#9B2242]/30 bg-[#161616] p-7 self-end">
+          <div className="w-full lg:w-[340px] flex-shrink-0 rounded-3xl border border-[#9B2242]/30 bg-[#161616] p-7 lg:mt-[52px]">
             <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium mb-5">Доступ</p>
             <div className="mb-6">
               <div className="font-display text-6xl font-semibold text-[#f0ede6] leading-none">500 ₽</div>

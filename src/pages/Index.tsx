@@ -254,8 +254,11 @@ export default function Index() {
             на практику
           </h1>
 
-          <p className="text-[#9a9690] text-lg md:text-xl max-w-2xl leading-relaxed mb-10">
+          <p className="text-[#9a9690] text-lg md:text-xl max-w-2xl leading-relaxed mb-4">
             Ежемесячная онлайн-встреча для психологов, психотерапевтов, психиатров и клинических психологов. Тема — спикер — разбор ситуаций — ваши вопросы.
+          </p>
+          <p className="text-[#9a9690] text-base max-w-2xl leading-relaxed mb-10">
+            Встречи проходят каждую вторую среду месяца. Темы связаны с направлениями курсов МЕД-ОБРАЗ — после встречи можно продолжить изучение темы в рамках полноценной программы повышения квалификации.
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10">
@@ -510,47 +513,16 @@ export default function Index() {
                 ))}
               </ul>
               <a
-                href="#"
+                href="#schedule"
                 className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
               >
-                Оплатить 500 ₽ и получить доступ
+                Выбрать тему
                 <Icon name="ArrowRight" size={18} />
               </a>
               <p className="text-center text-xs text-[#4a4845] mt-4">
                 Доступ приходит на email сразу после оплаты
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* О ПРОЕКТЕ */}
-      <section className="px-6 md:px-16 py-24 bg-[#131313] border-t border-[#f0ede6]/10">
-        <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
-          <div className="flex-1">
-            <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">О проекте</p>
-            <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-6">
-              МЕД-ОБРАЗ
-            </h2>
-            <p className="text-[#9a9690] text-lg leading-relaxed mb-6">
-              «Профессиональная среда» — образовательный проект МЕД-ОБРАЗ для специалистов в области психического здоровья. Встречи проходят каждую вторую среду месяца, онлайн, в формате 60–75 минут.
-            </p>
-            <p className="text-[#9a9690] leading-relaxed">
-              Темы встреч связаны с направлениями курсов МЕД-ОБРАЗ: после встречи можно продолжить изучение темы в рамках полноценной программы повышения квалификации.
-            </p>
-          </div>
-          <div className="w-full lg:w-72 flex-shrink-0 space-y-4">
-            {[
-              { icon: "Calendar", title: "Каждая вторая среда", sub: "ежемесячно, вечером" },
-              { icon: "Clock", title: "60–75 минут", sub: "онлайн-формат" },
-              { icon: "Wifi", title: "Запись доступна", sub: "после эфира, участникам" },
-            ].map((card) => (
-              <div key={card.title} className="p-5 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f]">
-                <Icon name={card.icon} size={20} className="text-[#9B2242] mb-3" />
-                <div className="font-display text-xl font-semibold text-[#f0ede6]">{card.title}</div>
-                <div className="text-[#9a9690] text-sm mt-1">{card.sub}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

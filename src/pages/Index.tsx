@@ -227,60 +227,58 @@ export default function Index() {
         />
         <div className="absolute top-[-120px] right-[-80px] w-[500px] h-[500px] rounded-full bg-[#9B2242] opacity-[0.07] blur-[100px] pointer-events-none" />
 
-        <header className="relative z-10 flex items-center justify-between gap-4">
+        <header className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
             <span className="font-display text-xl font-semibold tracking-wide text-[#f0ede6]">
               МедОбраз
             </span>
-            <p className="text-[11px] text-[#6b6865] mt-1 leading-[1.6] max-w-[220px]">
+            <p className="text-[11px] text-[#6b6865] mt-1 leading-[1.6]">
               АНО ДПО «НОЦ СМТ» при поддержке<br />
               Союза охраны психического здоровья
             </p>
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 text-center">
-            <p className="font-display text-2xl font-semibold text-[#f0ede6] tracking-wide whitespace-nowrap">Профессиональная среда по средам</p>
-          </div>
+          <p className="font-display text-lg sm:text-2xl font-semibold text-[#f0ede6] tracking-wide sm:absolute sm:left-1/2 sm:-translate-x-1/2 sm:text-center sm:whitespace-nowrap">Профессиональная среда по средам</p>
           <a
             href="#schedule"
-            className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#9B2242]/50 text-[#9B2242] text-sm font-semibold rounded-full hover:bg-[#9B2242] hover:text-white transition-all duration-200 whitespace-nowrap"
+            className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 border border-[#9B2242]/50 text-[#9B2242] text-sm font-semibold rounded-full hover:bg-[#9B2242] hover:text-white transition-all duration-200 whitespace-nowrap self-start sm:self-auto"
           >
             Расписание
             <Icon name="ChevronRight" size={14} />
           </a>
         </header>
 
-        <div className="relative z-10 flex-1 flex flex-col lg:flex-row items-start gap-12 pt-16 pb-10">
+        <div className="relative z-10 flex-1 flex flex-col lg:flex-row items-start gap-8 lg:gap-12 pt-10 md:pt-16 pb-10">
           <div className="flex-1 min-w-0">
-            <div className="mb-6 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium">
+            <div className="mb-5 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium">
               <span className="w-8 h-px bg-[#9B2242]" />
               Профессиональная среда
             </div>
 
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] text-[#f0ede6] mb-8">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] text-[#f0ede6] mb-6 md:mb-8">
               Встречи,<br />
               <em className="not-italic text-[#9B2242]">которые работают</em><br />
               на практику
             </h1>
 
-            <p className="text-[#9a9690] text-lg md:text-xl leading-relaxed mb-4">
+            <p className="text-[#9a9690] text-base md:text-xl leading-relaxed mb-4">
               Ежемесячная онлайн-встреча для психологов, психотерапевтов, психиатров и клинических психологов. Тема — спикер — разбор ситуаций — ваши вопросы.
             </p>
             <a
               href="https://rpa-msk.ru/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-[#f0ede6]/10 bg-[#161616] hover:border-[#9B2242]/40 hover:bg-[#1a1a1a] transition-all duration-200 group mt-6"
+              className="flex items-center gap-3 md:gap-4 px-4 md:px-5 py-3 md:py-4 rounded-2xl border border-[#f0ede6]/10 bg-[#161616] hover:border-[#9B2242]/40 hover:bg-[#1a1a1a] transition-all duration-200 group mt-5 md:mt-6"
             >
-              <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#9B2242]/15 flex-shrink-0">
-                <Icon name="Award" size={20} className="text-[#9B2242]" />
+              <div className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-xl bg-[#9B2242]/15 flex-shrink-0">
+                <Icon name="Award" size={18} className="text-[#9B2242]" />
               </div>
-              <p className="text-[#9a9690] text-base leading-snug">
+              <p className="text-[#9a9690] text-sm md:text-base leading-snug">
                 Встречи ведут эксперты <span className="text-[#f0ede6] font-semibold group-hover:text-[#9B2242] transition-colors duration-200">Московского отделения Российской психотерапевтической ассоциации</span>
               </p>
             </a>
           </div>
 
-          <div className="w-full lg:w-[340px] flex-shrink-0 rounded-3xl border border-[#9B2242]/30 bg-[#161616] p-7 lg:mt-[52px]">
+          <div className="w-full lg:w-[340px] flex-shrink-0 rounded-3xl border border-[#9B2242]/30 bg-[#161616] p-5 md:p-7 lg:mt-[52px]">
             <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium mb-5">Доступ</p>
             <div className="mb-6">
               <div className="font-display text-6xl font-semibold text-[#f0ede6] leading-none">500 ₽</div>
@@ -317,7 +315,7 @@ export default function Index() {
       <section className="px-6 md:px-16 py-14 border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Аудитория</p>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold text-[#f0ede6] mb-8 md:mb-14">
             Для кого эти встречи
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -346,10 +344,10 @@ export default function Index() {
       <section className="px-6 md:px-16 py-14 bg-[#131313] border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Формат</p>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold text-[#f0ede6] mb-8 md:mb-14">
             Что будет на встрече
           </h2>
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             {[
               {
                 time: "10 мин",
@@ -372,19 +370,17 @@ export default function Index() {
                 desc: "Живой диалог со спикером. Можно задать вопрос в эфире или прислать заранее.",
               },
             ].map((item, i) => (
-              <div key={i} className="flex gap-6 md:gap-10">
-                <div className="flex-shrink-0 text-right w-20 md:w-24 pt-1">
-                  <span className="text-[#9B2242] text-sm font-medium">{item.time}</span>
-                </div>
+              <div key={i} className="flex gap-4 md:gap-10">
                 <div className="flex-shrink-0 flex flex-col items-center">
                   <div className="w-8 h-8 flex items-center justify-center rounded-full border border-[#9B2242]/40 text-[#9B2242] text-xs font-semibold">
                     {i + 1}
                   </div>
                   {i < 3 && <div className="w-px flex-1 bg-[#f0ede6]/10 mt-2" />}
                 </div>
-                <div className="flex-1 pb-8 last:pb-0">
-                  <h3 className="font-display text-2xl font-semibold text-[#f0ede6] mb-2">{item.title}</h3>
-                  <p className="text-[#9a9690] leading-relaxed">{item.desc}</p>
+                <div className="flex-1 pb-6 md:pb-8 last:pb-0">
+                  <span className="text-[#9B2242] text-xs font-medium">{item.time}</span>
+                  <h3 className="font-display text-xl md:text-2xl font-semibold text-[#f0ede6] mb-1 mt-0.5">{item.title}</h3>
+                  <p className="text-[#9a9690] leading-relaxed text-sm md:text-base">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -396,7 +392,7 @@ export default function Index() {
       <section className="px-6 md:px-16 py-14 border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Результат</p>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold text-[#f0ede6] mb-8 md:mb-14">
             Что вы получите
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -451,7 +447,7 @@ export default function Index() {
       <section id="schedule" className="px-6 md:px-16 py-14 bg-[#131313] border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Расписание</p>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold text-[#f0ede6] mb-8 md:mb-14">
             Встречи 2026 года
           </h2>
           <div className="space-y-3">
@@ -459,48 +455,50 @@ export default function Index() {
               <div
                 key={i}
                 onClick={() => item.confirmed && setActiveEvent(item)}
-                className={`group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#9B2242]/30 transition-all duration-200 ${item.confirmed ? "cursor-pointer hover:bg-[#141414]" : ""}`}
+                className={`group flex flex-col gap-4 p-4 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#9B2242]/30 transition-all duration-200 ${item.confirmed ? "cursor-pointer hover:bg-[#141414]" : ""}`}
               >
-                <div className="flex-shrink-0 w-full md:w-36">
-                  <div className="font-display text-2xl font-semibold text-[#f0ede6] leading-none">
-                    {item.date.split(" ")[0]}
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="font-display text-2xl font-semibold text-[#f0ede6] leading-none">
+                      {item.date.split(" ")[0]}
+                    </div>
+                    <div className="text-sm text-[#9a9690] mt-0.5">
+                      {item.date.split(" ").slice(1).join(" ")}
+                    </div>
+                    <div className="mt-1.5 flex items-center gap-2">
+                      <span className="text-xs text-[#9B2242] font-medium">онлайн</span>
+                      <span className="text-xs text-[#4a4845]">·</span>
+                      <span className="text-xs text-[#9a9690]">19:00 – 20:30</span>
+                    </div>
                   </div>
-                  <div className="text-sm text-[#9a9690] mt-0.5">
-                    {item.date.split(" ").slice(1).join(" ")}
-                  </div>
-                  <div className="mt-1.5 flex flex-col gap-0.5">
-                    <span className="text-xs text-[#9B2242] font-medium">онлайн</span>
-                    <span className="text-xs text-[#9a9690]">19:00 – 20:30</span>
+                  <div className="flex-shrink-0">
+                    {item.confirmed ? (
+                      <span className="inline-flex items-center gap-1 px-3 py-1.5 border border-[#9B2242]/50 text-[#9B2242] text-xs font-semibold rounded-full group-hover:bg-[#9B2242] group-hover:text-white transition-all duration-200">
+                        Подробнее
+                        <Icon name="ChevronRight" size={12} />
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center px-3 py-1.5 border border-[#f0ede6]/15 text-[#4a4845] text-xs rounded-full">
+                        Скоро
+                      </span>
+                    )}
                   </div>
                 </div>
-                <div className="hidden md:block w-px h-10 bg-[#f0ede6]/10 flex-shrink-0" />
-                <div className="flex-1">
-                  <p className={`font-medium leading-snug ${!item.confirmed ? "text-[#9a9690] italic" : "text-[#f0ede6]"}`}>
+                <div className="border-t border-[#f0ede6]/10 pt-3">
+                  <p className={`font-medium leading-snug text-sm md:text-base ${!item.confirmed ? "text-[#9a9690] italic" : "text-[#f0ede6]"}`}>
                     {item.topic}
                   </p>
                   <p className="text-sm text-[#9a9690] mt-1">{item.speaker}</p>
                 </div>
-                <div className="flex-shrink-0 flex flex-col gap-2">
-                  {item.confirmed ? (
-                    <>
-                      <a
-                        href="#price"
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#9B2242] text-white text-sm font-semibold rounded-full hover:bg-[#b82a50] transition-all duration-200 whitespace-nowrap"
-                      >
-                        Зарегистрироваться
-                      </a>
-                      <span className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#9B2242]/50 text-[#9B2242] text-sm font-semibold rounded-full group-hover:bg-[#9B2242] group-hover:text-white transition-all duration-200 whitespace-nowrap">
-                        Подробнее
-                        <Icon name="ChevronRight" size={14} />
-                      </span>
-                    </>
-                  ) : (
-                    <span className="inline-flex items-center px-5 py-2.5 border border-[#f0ede6]/15 text-[#4a4845] text-sm rounded-full whitespace-nowrap">
-                      Скоро
-                    </span>
-                  )}
-                </div>
+                {item.confirmed && (
+                  <a
+                    href="#price"
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#9B2242] text-white text-sm font-semibold rounded-xl hover:bg-[#b82a50] transition-all duration-200"
+                  >
+                    Зарегистрироваться
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -513,7 +511,7 @@ export default function Index() {
       <section className="px-6 md:px-16 py-14 border-t border-[#f0ede6]/10">
         <div className="max-w-3xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Вопросы</p>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
+          <h2 className="font-display text-3xl md:text-5xl font-semibold text-[#f0ede6] mb-8 md:mb-14">
             Часто спрашивают
           </h2>
           <div className="space-y-2">

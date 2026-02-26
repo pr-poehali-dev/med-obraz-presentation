@@ -470,12 +470,21 @@ export default function Index() {
                   </p>
                   <p className="text-sm text-[#9a9690] mt-1">{item.speaker}</p>
                 </div>
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 flex flex-col gap-2">
                   {item.confirmed ? (
-                    <span className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#9B2242]/50 text-[#9B2242] text-sm font-semibold rounded-full group-hover:bg-[#9B2242] group-hover:text-white transition-all duration-200 whitespace-nowrap">
-                      Подробнее
-                      <Icon name="ChevronRight" size={14} />
-                    </span>
+                    <>
+                      <a
+                        href="#price"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#9B2242] text-white text-sm font-semibold rounded-full hover:bg-[#b82a50] transition-all duration-200 whitespace-nowrap"
+                      >
+                        Зарегистрироваться
+                      </a>
+                      <span className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#9B2242]/50 text-[#9B2242] text-sm font-semibold rounded-full group-hover:bg-[#9B2242] group-hover:text-white transition-all duration-200 whitespace-nowrap">
+                        Подробнее
+                        <Icon name="ChevronRight" size={14} />
+                      </span>
+                    </>
                   ) : (
                     <span className="inline-flex items-center px-5 py-2.5 border border-[#f0ede6]/15 text-[#4a4845] text-sm rounded-full whitespace-nowrap">
                       Скоро

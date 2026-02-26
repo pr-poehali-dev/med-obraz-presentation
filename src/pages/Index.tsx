@@ -230,7 +230,7 @@ export default function Index() {
         />
         <div className="absolute top-[-120px] right-[-80px] w-[500px] h-[500px] rounded-full bg-[#9B2242] opacity-[0.07] blur-[100px] pointer-events-none" />
 
-        <header className="relative z-10 flex items-center justify-between">
+        <header className="relative z-10 flex items-center justify-between gap-4">
           <div>
             <span className="font-display text-xl font-semibold tracking-wide text-[#f0ede6]">
               МЕД-ОБРАЗ
@@ -239,15 +239,16 @@ export default function Index() {
               АНО ДПО «НОЦ СМТ» при поддержке Союза охраны психического здоровья
             </p>
           </div>
-          <div className="text-right">
-            <a
-              href="#schedule"
-              className="block text-base font-semibold text-[#9B2242] hover:text-[#b82a50] transition-colors duration-200"
-            >
-              Расписание
-            </a>
-            <p className="text-[11px] text-[#4a4845] mt-0.5">Профессиональная среда · по средам</p>
+          <div className="absolute left-1/2 -translate-x-1/2 text-center">
+            <p className="text-sm font-semibold text-[#f0ede6] tracking-wide">Профессиональная среда по средам</p>
           </div>
+          <a
+            href="#schedule"
+            className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#9B2242]/50 text-[#9B2242] text-sm font-semibold rounded-full hover:bg-[#9B2242] hover:text-white transition-all duration-200 whitespace-nowrap"
+          >
+            Расписание
+            <Icon name="ChevronRight" size={14} />
+          </a>
         </header>
 
         <div className="relative z-10 flex-1 flex flex-col justify-center pt-16 pb-10 max-w-4xl">

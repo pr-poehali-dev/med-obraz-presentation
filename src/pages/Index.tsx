@@ -252,46 +252,46 @@ export default function Index() {
           </a>
         </header>
 
-        <div className="relative z-10 flex-1 flex flex-col md:flex-row items-start justify-between gap-10 pt-16 pb-10">
-          <div className="max-w-2xl">
+        <div className="relative z-10 flex-1 flex flex-col pt-16 pb-10">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10">
             <div className="mb-6 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium">
               <span className="w-8 h-px bg-[#9B2242]" />
               Профессиональная среда
             </div>
+            <div className="flex gap-4 flex-shrink-0">
+              {[
+                { label: "500 ₽", sub: "за встречу", icon: "Banknote" },
+                { label: "Запись", sub: "доступна после эфира", icon: "Play" },
+              ].map(({ label, sub, icon }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-[#9B2242]/30 bg-[#9B2242]/[0.06]"
+                >
+                  <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#9B2242]/15 flex-shrink-0">
+                    <Icon name={icon} size={20} className="text-[#9B2242]" />
+                  </div>
+                  <div>
+                    <div className="text-[#f0ede6] text-lg font-semibold leading-tight">{label}</div>
+                    <div className="text-[#9a9690] text-xs mt-0.5">{sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] text-[#f0ede6] mb-8">
-              Встречи,<br />
-              <em className="not-italic text-[#9B2242]">которые работают</em><br />
-              на практику
-            </h1>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] text-[#f0ede6] mb-8">
+            Встречи,<br />
+            <em className="not-italic text-[#9B2242]">которые работают</em><br />
+            на практику
+          </h1>
 
-            <p className="text-[#9a9690] text-lg md:text-xl leading-relaxed mb-4">
+          <div className="grid md:grid-cols-2 gap-4 max-w-4xl">
+            <p className="text-[#9a9690] text-lg md:text-xl leading-relaxed">
               Ежемесячная онлайн-встреча для психологов, психотерапевтов, психиатров и клинических психологов. Тема — спикер — разбор ситуаций — ваши вопросы.
             </p>
             <p className="text-[#9a9690] text-base leading-relaxed">
               Встречи проходят каждую вторую среду месяца. Темы связаны с направлениями курсов МедОбраз — после встречи можно продолжить изучение темы в рамках полноценной программы повышения квалификации.
             </p>
-          </div>
-
-          <div className="flex flex-col gap-4 md:pt-0 flex-shrink-0 w-full md:w-[220px] justify-center">
-            {[
-              { label: "500 ₽", sub: "за встречу", icon: "Banknote" },
-              { label: "Запись", sub: "доступна после эфира", icon: "Play" },
-              { label: "2-я среда", sub: "каждого месяца", icon: "Calendar" },
-            ].map(({ label, sub, icon }) => (
-              <div
-                key={label}
-                className="flex items-center gap-4 px-5 py-4 rounded-2xl border border-[#9B2242]/30 bg-[#9B2242]/[0.06]"
-              >
-                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#9B2242]/15 flex-shrink-0">
-                  <Icon name={icon} size={20} className="text-[#9B2242]" />
-                </div>
-                <div>
-                  <div className="text-[#f0ede6] text-lg font-semibold leading-tight">{label}</div>
-                  <div className="text-[#9a9690] text-xs mt-0.5">{sub}</div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 

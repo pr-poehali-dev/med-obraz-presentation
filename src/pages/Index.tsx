@@ -117,7 +117,7 @@ const faqs = [
 ];
 
 function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void }) {
-  const d = item.detail!;
+  const d = item.detail;
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
@@ -135,43 +135,67 @@ function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void
         </button>
 
         <div className="p-6 md:p-8">
-          <div className="mb-1 text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium">
-            {item.date}
+          <div className="mb-1 flex items-center gap-3 text-xs tracking-[0.15em] uppercase text-[#9B2242] font-medium">
+            <span>{item.date}</span>
+            <span className="text-[#4a4845]">·</span>
+            <span>19:00 – 20:30</span>
+            <span className="text-[#4a4845]">·</span>
+            <span>онлайн</span>
           </div>
-          <h2 className="font-display text-xl md:text-2xl font-semibold text-[#f0ede6] leading-snug mb-6">
-            {d.title}
+
+          <h2 className="font-display text-xl md:text-2xl font-semibold text-[#f0ede6] leading-snug mb-6 mt-2">
+            {d ? d.title : item.topic}
           </h2>
 
-          <div className="flex items-start gap-5 mb-6 p-5 rounded-2xl bg-[#0f0f0f] border border-[#f0ede6]/10">
-            <img
-              src={d.speakerPhoto}
-              alt={d.speakerFull}
-              className="w-20 h-24 object-cover rounded-xl flex-shrink-0 object-top"
-            />
-            <div>
-              <p className="font-display text-lg font-semibold text-[#f0ede6] leading-snug mb-1">
-                {d.speakerFull}
-              </p>
-              <p className="text-sm text-[#9a9690] leading-relaxed">{d.speakerBio}</p>
-            </div>
-          </div>
-
-          <div className="space-y-3 mb-8">
-            {d.description.map((para, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#9B2242] flex-shrink-0" />
-                <p className="text-[#c8c3bb] text-sm leading-relaxed">{para}</p>
+          {d ? (
+            <>
+              <div className="flex items-start gap-5 mb-6 p-5 rounded-2xl bg-[#0f0f0f] border border-[#f0ede6]/10">
+                <img
+                  src={d.speakerPhoto}
+                  alt={d.speakerFull}
+                  className="w-20 h-24 object-cover rounded-xl flex-shrink-0 object-top"
+                />
+                <div>
+                  <p className="font-display text-lg font-semibold text-[#f0ede6] leading-snug mb-1">
+                    {d.speakerFull}
+                  </p>
+                  <p className="text-sm text-[#9a9690] leading-relaxed">{d.speakerBio}</p>
+                </div>
               </div>
-            ))}
-          </div>
 
-          <a
-            href={d.registerUrl}
-            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
-          >
-            Зарегистрироваться
-            <Icon name="ArrowRight" size={18} />
-          </a>
+              <div className="space-y-3 mb-8">
+                {d.description.map((para, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#9B2242] flex-shrink-0" />
+                    <p className="text-[#c8c3bb] text-sm leading-relaxed">{para}</p>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href={d.registerUrl}
+                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+              >
+                Зарегистрироваться
+                <Icon name="ArrowRight" size={18} />
+              </a>
+            </>
+          ) : (
+            <>
+              <div className="mb-6 p-5 rounded-2xl bg-[#0f0f0f] border border-[#f0ede6]/10">
+                <p className="text-sm text-[#9a9690]">Спикер: <span className="text-[#f0ede6]">{item.speaker}</span></p>
+                <p className="text-sm text-[#4a4845] mt-3">Подробная информация о встрече будет опубликована ближе к дате проведения.</p>
+              </div>
+              <a
+                href="#price"
+                onClick={onClose}
+                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+              >
+                Зарегистрироваться
+                <Icon name="ArrowRight" size={18} />
+              </a>
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -407,15 +431,19 @@ export default function Index() {
             {schedule.map((item, i) => (
               <div
                 key={i}
-                onClick={() => item.detail && setActiveEvent(item)}
-                className={`group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#9B2242]/30 transition-all duration-200 ${item.detail ? "cursor-pointer hover:bg-[#141414]" : ""}`}
+                onClick={() => item.confirmed && setActiveEvent(item)}
+                className={`group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#9B2242]/30 transition-all duration-200 ${item.confirmed ? "cursor-pointer hover:bg-[#141414]" : ""}`}
               >
-                <div className="flex-shrink-0 w-full md:w-32">
+                <div className="flex-shrink-0 w-full md:w-36">
                   <div className="font-display text-2xl font-semibold text-[#f0ede6] leading-none">
                     {item.date.split(" ")[0]}
                   </div>
                   <div className="text-sm text-[#9a9690] mt-0.5">
                     {item.date.split(" ").slice(1).join(" ")}
+                  </div>
+                  <div className="mt-1.5 flex flex-col gap-0.5">
+                    <span className="text-xs text-[#9B2242] font-medium">онлайн</span>
+                    <span className="text-xs text-[#4a4845]">19:00 – 20:30</span>
                   </div>
                 </div>
                 <div className="hidden md:block w-px h-10 bg-[#f0ede6]/10 flex-shrink-0" />
@@ -425,21 +453,12 @@ export default function Index() {
                   </p>
                   <p className="text-sm text-[#9a9690] mt-1">{item.speaker}</p>
                 </div>
-                <div className="flex-shrink-0 flex items-center gap-3">
-                  {item.detail && (
-                    <span className="text-xs text-[#9B2242] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                      <Icon name="Info" size={13} />
-                      подробнее
-                    </span>
-                  )}
+                <div className="flex-shrink-0">
                   {item.confirmed ? (
-                    <a
-                      href="#price"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#9B2242] text-white text-sm font-semibold rounded-full hover:bg-[#b82a50] transition-all duration-200 whitespace-nowrap"
-                    >
-                      Купить доступ
-                    </a>
+                    <span className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#9B2242]/50 text-[#9B2242] text-sm font-semibold rounded-full group-hover:bg-[#9B2242] group-hover:text-white transition-all duration-200 whitespace-nowrap">
+                      Подробнее
+                      <Icon name="ChevronRight" size={14} />
+                    </span>
                   ) : (
                     <span className="inline-flex items-center px-5 py-2.5 border border-[#f0ede6]/15 text-[#4a4845] text-sm rounded-full whitespace-nowrap">
                       Скоро

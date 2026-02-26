@@ -233,14 +233,16 @@ export default function Index() {
         <header className="relative z-10 flex items-center justify-between gap-4">
           <div>
             <span className="font-display text-xl font-semibold tracking-wide text-[#f0ede6]">
-              МЕД-ОБРАЗ
+              МедОбраз
             </span>
-            <p className="text-[11px] text-[#4a4845] mt-0.5 leading-tight">
-              АНО ДПО «НОЦ СМТ» при поддержке Союза охраны психического здоровья
+            <p className="text-[11px] text-[#6b6865] mt-1 leading-[1.6] max-w-[220px]">
+              АНО ДПО «НОЦ СМТ»<br />
+              при поддержке<br />
+              Союза охраны психического здоровья
             </p>
           </div>
           <div className="absolute left-1/2 -translate-x-1/2 text-center">
-            <p className="text-sm font-semibold text-[#f0ede6] tracking-wide">Профессиональная среда по средам</p>
+            <p className="font-display text-xl font-semibold text-[#f0ede6] tracking-wide whitespace-nowrap">Профессиональная среда по средам</p>
           </div>
           <a
             href="#schedule"

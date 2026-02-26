@@ -236,13 +236,12 @@ export default function Index() {
               МедОбраз
             </span>
             <p className="text-[11px] text-[#6b6865] mt-1 leading-[1.6] max-w-[220px]">
-              АНО ДПО «НОЦ СМТ»<br />
-              при поддержке<br />
+              АНО ДПО «НОЦ СМТ» при поддержке<br />
               Союза охраны психического здоровья
             </p>
           </div>
           <div className="absolute left-1/2 -translate-x-1/2 text-center">
-            <p className="font-display text-xl font-semibold text-[#f0ede6] tracking-wide whitespace-nowrap">Профессиональная среда по средам</p>
+            <p className="font-display text-2xl font-semibold text-[#f0ede6] tracking-wide whitespace-nowrap">Профессиональная среда по средам</p>
           </div>
           <a
             href="#schedule"
@@ -253,50 +252,41 @@ export default function Index() {
           </a>
         </header>
 
-        <div className="relative z-10 flex-1 flex flex-col justify-center pt-16 pb-10 max-w-4xl">
-          <div className="mb-6 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium">
-            <span className="w-8 h-px bg-[#9B2242]" />
-            Профессиональная среда
+        <div className="relative z-10 flex-1 flex flex-col md:flex-row items-start justify-between gap-10 pt-16 pb-10">
+          <div className="max-w-2xl">
+            <div className="mb-6 inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase text-[#9B2242] font-medium">
+              <span className="w-8 h-px bg-[#9B2242]" />
+              Профессиональная среда
+            </div>
+
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] text-[#f0ede6] mb-8">
+              Встречи,<br />
+              <em className="not-italic text-[#9B2242]">которые работают</em><br />
+              на практику
+            </h1>
+
+            <p className="text-[#9a9690] text-lg md:text-xl leading-relaxed mb-4">
+              Ежемесячная онлайн-встреча для психологов, психотерапевтов, психиатров и клинических психологов. Тема — спикер — разбор ситуаций — ваши вопросы.
+            </p>
+            <p className="text-[#9a9690] text-base leading-relaxed">
+              Встречи проходят каждую вторую среду месяца. Темы связаны с направлениями курсов МедОбраз — после встречи можно продолжить изучение темы в рамках полноценной программы повышения квалификации.
+            </p>
           </div>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] text-[#f0ede6] mb-8">
-            Встречи,<br />
-            <em className="not-italic text-[#9B2242]">которые работают</em><br />
-            на практику
-          </h1>
-
-          <p className="text-[#9a9690] text-lg md:text-xl max-w-2xl leading-relaxed mb-4">
-            Ежемесячная онлайн-встреча для психологов, психотерапевтов, психиатров и клинических психологов. Тема — спикер — разбор ситуаций — ваши вопросы.
-          </p>
-          <p className="text-[#9a9690] text-base max-w-2xl leading-relaxed mb-10">
-            Встречи проходят каждую вторую среду месяца. Темы связаны с направлениями курсов МЕД-ОБРАЗ — после встречи можно продолжить изучение темы в рамках полноценной программы повышения квалификации.
-          </p>
-
-          <div className="flex flex-wrap gap-3 mb-10">
-            {["500 ₽ за встречу", "Запись доступна", "2-я среда месяца"].map((pill) => (
-              <span
-                key={pill}
-                className="px-4 py-2 rounded-full border border-[#9B2242]/40 text-[#9B2242] text-sm font-medium"
+          <div className="flex flex-col gap-3 md:pt-[140px] flex-shrink-0">
+            {[
+              { label: "500 ₽ за встречу", icon: "Banknote" },
+              { label: "Запись доступна", icon: "Play" },
+              { label: "2-я среда месяца", icon: "Calendar" },
+            ].map(({ label, icon }) => (
+              <div
+                key={label}
+                className="flex items-center gap-3 px-5 py-3 rounded-2xl border border-[#9B2242]/30 bg-[#9B2242]/05"
               >
-                {pill}
-              </span>
+                <Icon name={icon} size={16} className="text-[#9B2242] flex-shrink-0" />
+                <span className="text-[#f0ede6] text-sm font-medium">{label}</span>
+              </div>
             ))}
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#price"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#9B2242] text-white font-semibold text-base rounded-full hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              Купить доступ на ближайшую встречу
-              <Icon name="ArrowRight" size={18} />
-            </a>
-            <a
-              href="#schedule"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#f0ede6]/20 text-[#f0ede6] font-medium text-base rounded-full hover:border-[#f0ede6]/50 transition-all duration-200"
-            >
-              Посмотреть расписание
-            </a>
           </div>
         </div>
 
@@ -304,7 +294,7 @@ export default function Index() {
       </section>
 
       {/* ДЛЯ КОГО */}
-      <section className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
+      <section className="px-6 md:px-16 py-14 border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Аудитория</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
@@ -333,7 +323,7 @@ export default function Index() {
       </section>
 
       {/* СТРУКТУРА ВСТРЕЧИ */}
-      <section className="px-6 md:px-16 py-24 bg-[#131313] border-t border-[#f0ede6]/10">
+      <section className="px-6 md:px-16 py-14 bg-[#131313] border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Формат</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
@@ -383,7 +373,7 @@ export default function Index() {
       </section>
 
       {/* ЧТО ВЫ ПОЛУЧИТЕ */}
-      <section className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
+      <section className="px-6 md:px-16 py-14 border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Результат</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
@@ -438,7 +428,7 @@ export default function Index() {
       </section>
 
       {/* РАСПИСАНИЕ */}
-      <section id="schedule" className="px-6 md:px-16 py-24 bg-[#131313] border-t border-[#f0ede6]/10">
+      <section id="schedule" className="px-6 md:px-16 py-14 bg-[#131313] border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Расписание</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">
@@ -489,7 +479,7 @@ export default function Index() {
       </section>
 
       {/* ЦЕНА */}
-      <section id="price" className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
+      <section id="price" className="px-6 md:px-16 py-14 border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
             <div className="flex-1">
@@ -536,7 +526,7 @@ export default function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="px-6 md:px-16 py-24 border-t border-[#f0ede6]/10">
+      <section className="px-6 md:px-16 py-14 border-t border-[#f0ede6]/10">
         <div className="max-w-3xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Вопросы</p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-[#f0ede6] mb-14">

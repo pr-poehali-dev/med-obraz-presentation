@@ -265,9 +265,15 @@ export default function Index() {
             <p className="text-[#9a9690] text-lg md:text-xl leading-relaxed mb-4">
               Ежемесячная онлайн-встреча для психологов, психотерапевтов, психиатров и клинических психологов. Тема — спикер — разбор ситуаций — ваши вопросы.
             </p>
-            <p className="text-[#9a9690] text-base leading-relaxed">
+            <p className="text-[#9a9690] text-base leading-relaxed mb-6">
               Встречи проходят каждую вторую среду месяца. Темы связаны с направлениями курсов МедОбраз — после встречи можно продолжить изучение темы в рамках полноценной программы повышения квалификации.
             </p>
+            <div className="flex items-start gap-3 px-4 py-3 rounded-2xl border border-[#f0ede6]/10 bg-[#161616]">
+              <Icon name="Award" size={18} className="text-[#9B2242] flex-shrink-0 mt-0.5" />
+              <p className="text-[#9a9690] text-sm leading-snug">
+                Встречи ведут эксперты <span className="text-[#f0ede6] font-medium">Московского отделения Российской психотерапевтической ассоциации</span>
+              </p>
+            </div>
           </div>
 
           <div className="w-full lg:w-[340px] flex-shrink-0 rounded-3xl border border-[#9B2242]/30 bg-[#161616] p-7 lg:mt-[52px]">

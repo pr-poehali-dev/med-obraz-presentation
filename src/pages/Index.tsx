@@ -13,8 +13,7 @@ type ScheduleItem = {
     speakerPhoto: string;
     description: string[];
     registerUrl: string;
-    widgetScriptId?: string;
-    widgetScriptSrc?: string;
+    widgetId?: string;
   };
 };
 
@@ -37,8 +36,7 @@ const schedule: ScheduleItem[] = [
         "Как сообщить клиенту о необходимости консультации психиатра, чтобы не усилить стигматизацию и не разрушить альянс.",
       ],
       registerUrl: "#",
-      widgetScriptId: "963f78b8436fe8673a128facb48a052cf4845ae5",
-      widgetScriptSrc: "https://course.rosmededucation.ru/pl/lite/widget/script?id=1569437",
+      widgetId: "1569437",
     },
   },
   {
@@ -140,36 +138,32 @@ const faqs = [
   },
 ];
 
-function WidgetButton({ scriptId, scriptSrc }: { scriptId: string; scriptSrc: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
+function WidgetIframe({ widgetId }: { widgetId: string }) {
+  const [height, setHeight] = useState(120);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const src = `https://course.rosmededucation.ru/pl/lite/widget/widget?id=${widgetId}&ref=${encodeURIComponent(document.referrer)}&loc=${encodeURIComponent(document.location.href)}`;
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    // Удаляем старый если есть
-    const existing = document.getElementById(scriptId);
-    if (existing) existing.remove();
-
-    // createContextualFragment — выполняет скрипты и добавляет их в DOM одновременно
-    const fragment = document.createRange().createContextualFragment(
-      `<script id="${scriptId}" src="${scriptSrc}"></` + `script>`
-    );
-    container.appendChild(fragment);
-
-    // Виджет ставит overflow:hidden на parentNode — сбрасываем
-    container.style.overflow = 'visible';
-
-    return () => {
-      container.innerHTML = '';
+    const handler = (e: MessageEvent) => {
+      if (e.data?.uniqName === '963f78b8436fe8673a128facb48a052cf4845ae5' && e.data?.height) {
+        setHeight(e.data.height);
+      }
     };
-  }, [scriptId, scriptSrc]);
+    window.addEventListener('message', handler);
+    return () => window.removeEventListener('message', handler);
+  }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="w-full"
-      style={{ overflow: 'visible', minHeight: '60px' }}
+    <iframe
+      ref={iframeRef}
+      src={src}
+      data-account-id="657567"
+      className="688"
+      id="e2dbc0fc6bab376ba0ed0b8f505240a6521b1118_688"
+      name="688"
+      allowFullScreen
+      style={{ width: '100%', height: `${height}px`, border: 'none', overflow: 'hidden', display: 'block' }}
     />
   );
 }
@@ -244,8 +238,8 @@ function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void
                 })}
               </div>
 
-              {d.widgetScriptId && d.widgetScriptSrc ? (
-                <WidgetButton scriptId={d.widgetScriptId} scriptSrc={d.widgetScriptSrc} />
+              {d.widgetId ? (
+                <WidgetIframe widgetId={d.widgetId} />
               ) : (
                 <a
                   href={d.registerUrl}

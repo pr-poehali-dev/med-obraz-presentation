@@ -261,13 +261,6 @@ function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void
                 })}
               </div>
 
-              <a
-                href={d.registerUrl}
-                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
-              >
-                Зарегистрироваться
-                <Icon name="ArrowRight" size={18} />
-              </a>
             </>
           ) : (
             <>
@@ -275,14 +268,6 @@ function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void
                 <p className="text-sm text-[#9a9690]">Спикер: <span className="text-[#f0ede6]">{item.speaker}</span></p>
                 <p className="text-sm text-[#4a4845] mt-3">Подробная информация о встрече будет опубликована ближе к дате проведения.</p>
               </div>
-              <a
-                href="#price"
-                onClick={onClose}
-                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
-              >
-                Зарегистрироваться
-                <Icon name="ArrowRight" size={18} />
-              </a>
             </>
           )}
         </div>
@@ -537,9 +522,20 @@ export default function Index() {
       <section id="schedule" className="px-6 md:px-16 py-14 bg-[#131313] border-t border-[#f0ede6]/10">
         <div className="max-w-5xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-[#9B2242] mb-4 font-medium">Расписание</p>
-          <h2 className="font-display text-3xl md:text-5xl font-semibold text-[#f0ede6] mb-8 md:mb-14">
-            Встречи 2026 года
-          </h2>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8 md:mb-14">
+            <h2 className="font-display text-3xl md:text-5xl font-semibold text-[#f0ede6]">
+              Встречи 2026 года
+            </h2>
+            <a
+              href="https://course.rosmededucation.ru/profsreda"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] whitespace-nowrap flex-shrink-0"
+            >
+              Зарегистрироваться
+              <Icon name="ArrowRight" size={18} />
+            </a>
+          </div>
           <div className="space-y-3">
             {schedule.map((item, i) => (
               <div
@@ -580,21 +576,7 @@ export default function Index() {
                   </p>
                   <p className="text-sm text-[#9a9690] mt-1">{item.speaker}</p>
                 </div>
-                {item.confirmed && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (item.detail?.widgetId) {
-                        setWidgetItemId(item.detail.widgetId);
-                      } else {
-                        setActiveEvent(item);
-                      }
-                    }}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#9B2242] text-white text-sm font-semibold rounded-xl hover:bg-[#b82a50] transition-all duration-200"
-                  >
-                    Зарегистрироваться
-                  </button>
-                )}
+
               </div>
             ))}
           </div>

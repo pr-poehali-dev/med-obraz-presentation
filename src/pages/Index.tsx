@@ -147,27 +147,20 @@ function WidgetButton({ scriptId, scriptSrc }: { scriptId: string; scriptSrc: st
     const container = containerRef.current;
     if (!container) return;
 
+    // Удаляем старый если есть
     const existing = document.getElementById(scriptId);
     if (existing) existing.remove();
 
-    const script = document.createElement('script');
-    script.id = scriptId;
-    script.src = scriptSrc;
-    script.async = true;
-    container.appendChild(script);
+    // createContextualFragment — выполняет скрипты и добавляет их в DOM одновременно
+    const fragment = document.createRange().createContextualFragment(
+      `<script id="${scriptId}" src="${scriptSrc}"></` + `script>`
+    );
+    container.appendChild(fragment);
 
-    // виджет сам ставит overflow:hidden на parentNode — перебиваем
-    const observer = new MutationObserver(() => {
-      if (container.style.overflow === 'hidden') {
-        container.style.overflow = 'visible';
-      }
-    });
-    observer.observe(container, { attributes: true, attributeFilter: ['style'] });
+    // Виджет ставит overflow:hidden на parentNode — сбрасываем
+    container.style.overflow = 'visible';
 
     return () => {
-      observer.disconnect();
-      const s = document.getElementById(scriptId);
-      if (s) s.remove();
       container.innerHTML = '';
     };
   }, [scriptId, scriptSrc]);

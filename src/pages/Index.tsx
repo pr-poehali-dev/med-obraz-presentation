@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 type ScheduleItem = {
@@ -13,6 +13,8 @@ type ScheduleItem = {
     speakerPhoto: string;
     description: string[];
     registerUrl: string;
+    widgetScriptId?: string;
+    widgetScriptSrc?: string;
   };
 };
 
@@ -35,6 +37,8 @@ const schedule: ScheduleItem[] = [
         "Как сообщить клиенту о необходимости консультации психиатра, чтобы не усилить стигматизацию и не разрушить альянс.",
       ],
       registerUrl: "#",
+      widgetScriptId: "963f78b8436fe8673a128facb48a052cf4845ae5",
+      widgetScriptSrc: "https://course.rosmededucation.ru/pl/lite/widget/script?id=1569437",
     },
   },
   {
@@ -136,6 +140,25 @@ const faqs = [
   },
 ];
 
+function WidgetButton({ scriptId, scriptSrc }: { scriptId: string; scriptSrc: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const existing = document.getElementById(scriptId);
+    if (existing) existing.remove();
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.src = scriptSrc;
+    containerRef.current.appendChild(script);
+    return () => {
+      script.remove();
+    };
+  }, [scriptId, scriptSrc]);
+
+  return <div ref={containerRef} className="w-full" />;
+}
+
 function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void }) {
   const d = item.detail;
   return (
@@ -206,13 +229,17 @@ function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void
                 })}
               </div>
 
-              <a
-                href={d.registerUrl}
-                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
-              >
-                Зарегистрироваться
-                <Icon name="ArrowRight" size={18} />
-              </a>
+              {d.widgetScriptId && d.widgetScriptSrc ? (
+                <WidgetButton scriptId={d.widgetScriptId} scriptSrc={d.widgetScriptSrc} />
+              ) : (
+                <a
+                  href={d.registerUrl}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+                >
+                  Зарегистрироваться
+                  <Icon name="ArrowRight" size={18} />
+                </a>
+              )}
             </>
           ) : (
             <>

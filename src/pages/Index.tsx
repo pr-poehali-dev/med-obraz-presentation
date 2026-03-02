@@ -275,6 +275,18 @@ function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void
 export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeEvent, setActiveEvent] = useState<ScheduleItem | null>(null);
+  const [selected, setSelected] = useState<Set<number>>(new Set());
+  const toggleSelect = (i: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelected(prev => {
+      const next = new Set(prev);
+      if (next.has(i)) { next.delete(i); } else { next.add(i); }
+      return next;
+    });
+  };
+
+  const selectedItems = schedule.filter((_, i) => selected.has(i));
+  const firstWithWidget = selectedItems.find(s => s.detail?.widgetId);
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-[#f0ede6] font-body">
@@ -518,57 +530,106 @@ export default function Index() {
             Встречи 2026 года
           </h2>
           <div className="space-y-3">
-            {schedule.map((item, i) => (
-              <div
-                key={i}
-                onClick={() => item.confirmed && setActiveEvent(item)}
-                className={`group flex flex-col gap-4 p-4 md:p-6 rounded-2xl border border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#9B2242]/30 transition-all duration-200 ${item.confirmed ? "cursor-pointer hover:bg-[#141414]" : ""}`}
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-shrink-0">
-                    <div className="font-display text-2xl font-semibold text-[#f0ede6] leading-none">
-                      {item.date.split(" ")[0]}
+            {schedule.map((item, i) => {
+              const isSelected = selected.has(i);
+              return (
+                <div
+                  key={i}
+                  className={`group p-4 md:p-5 rounded-2xl border transition-all duration-200 ${isSelected ? "border-[#9B2242]/60 bg-[#1a0d12]" : "border-[#f0ede6]/10 bg-[#0f0f0f] hover:border-[#9B2242]/30 hover:bg-[#141414]"}`}
+                >
+                  {/* Верхняя строка: дата + название + кнопки */}
+                  <div className="flex items-center gap-3 md:gap-5">
+                    {/* Дата */}
+                    <div className="flex-shrink-0 w-16 md:w-20 text-center">
+                      <div className="font-display text-2xl md:text-3xl font-semibold text-[#f0ede6] leading-none">
+                        {item.date.split(" ")[0]}
+                      </div>
+                      <div className="text-xs text-[#9a9690] mt-0.5 leading-tight">
+                        {item.date.split(" ").slice(1).join(" ")}
+                      </div>
                     </div>
-                    <div className="text-sm text-[#9a9690] mt-0.5">
-                      {item.date.split(" ").slice(1).join(" ")}
+
+                    {/* Разделитель */}
+                    <div className="w-px h-10 bg-[#f0ede6]/10 flex-shrink-0" />
+
+                    {/* Название и спикер */}
+                    <div className="flex-1 min-w-0">
+                      <p className={`font-medium leading-snug text-sm md:text-base ${!item.confirmed ? "text-[#9a9690] italic" : "text-[#f0ede6]"}`}>
+                        {item.topic}
+                      </p>
+                      <p className="text-xs text-[#9a9690] mt-0.5">{item.speaker}</p>
                     </div>
-                    <div className="mt-1.5 flex items-center gap-2">
-                      <span className="text-xs text-[#9B2242] font-medium">онлайн</span>
-                      <span className="text-xs text-[#4a4845]">·</span>
-                      <span className="text-xs text-[#9a9690]">19:00 – 20:30</span>
+
+                    {/* Кнопки */}
+                    <div className="flex-shrink-0 flex items-center gap-2">
+                      {item.confirmed ? (
+                        <>
+                          <button
+                            onClick={() => setActiveEvent(item)}
+                            className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 border border-[#f0ede6]/20 text-[#9a9690] text-xs rounded-full hover:border-[#9B2242]/50 hover:text-[#9B2242] transition-all duration-200"
+                          >
+                            Подробнее
+                          </button>
+                          <button
+                            onClick={(e) => toggleSelect(i, e)}
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full border transition-all duration-200 ${isSelected ? "bg-[#9B2242] border-[#9B2242] text-white" : "border-[#9B2242]/50 text-[#9B2242] hover:bg-[#9B2242] hover:text-white"}`}
+                          >
+                            <Icon name={isSelected ? "Check" : "Plus"} size={12} />
+                            {isSelected ? "Выбрано" : "Выбрать"}
+                          </button>
+                        </>
+                      ) : (
+                        <span className="inline-flex items-center px-3 py-1.5 border border-[#f0ede6]/15 text-[#4a4845] text-xs rounded-full">
+                          Скоро
+                        </span>
+                      )}
                     </div>
                   </div>
-                  <div className="flex-shrink-0">
-                    {item.confirmed ? (
-                      <span className="inline-flex items-center gap-1 px-3 py-1.5 border border-[#9B2242]/50 text-[#9B2242] text-xs font-semibold rounded-full group-hover:bg-[#9B2242] group-hover:text-white transition-all duration-200">
-                        Подробнее
-                        <Icon name="ChevronRight" size={12} />
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center px-3 py-1.5 border border-[#f0ede6]/15 text-[#4a4845] text-xs rounded-full">
-                        Скоро
-                      </span>
-                    )}
+
+                  {/* Время — под строкой */}
+                  <div className="mt-2 ml-[84px] md:ml-[104px] flex items-center gap-2">
+                    <span className="text-xs text-[#9B2242] font-medium">онлайн</span>
+                    <span className="text-xs text-[#4a4845]">·</span>
+                    <span className="text-xs text-[#9a9690]">19:00 – 20:30</span>
                   </div>
                 </div>
-                <div className="border-t border-[#f0ede6]/10 pt-3">
-                  <p className={`font-medium leading-snug text-sm md:text-base ${!item.confirmed ? "text-[#9a9690] italic" : "text-[#f0ede6]"}`}>
-                    {item.topic}
-                  </p>
-                  <p className="text-sm text-[#9a9690] mt-1">{item.speaker}</p>
-                </div>
-                {item.confirmed && (
-                  <a
-                    href="#price"
-                    onClick={(e) => e.stopPropagation()}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#9B2242] text-white text-sm font-semibold rounded-xl hover:bg-[#b82a50] transition-all duration-200"
-                  >
-                    Зарегистрироваться
-                  </a>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
+
+          {/* Корзина выбранных */}
+          {selected.size > 0 && (
+            <div className="mt-6 p-5 rounded-2xl border border-[#9B2242]/40 bg-[#161616]">
+              <p className="text-sm text-[#9a9690] mb-3">
+                Выбрано встреч: <span className="text-[#f0ede6] font-semibold">{selected.size}</span>
+                {selected.size > 1 && (
+                  <span className="ml-2 text-[#9B2242]">· {selected.size * 500} ₽</span>
+                )}
+              </p>
+              <div className="space-y-1 mb-4">
+                {selectedItems.map((s, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm">
+                    <span className="text-[#9B2242]">·</span>
+                    <span className="text-[#c8c3bb] truncate">{s.date} — {s.topic}</span>
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={() => {
+                  if (firstWithWidget) {
+                    setActiveEvent(firstWithWidget);
+                  } else {
+                    setActiveEvent(selectedItems[0]);
+                  }
+
+                }}
+                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-[#9B2242] text-white font-semibold rounded-xl hover:bg-[#b82a50] transition-all duration-200"
+              >
+                Зарегистрироваться
+                <Icon name="ArrowRight" size={18} />
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

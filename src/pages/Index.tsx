@@ -13,7 +13,8 @@ type ScheduleItem = {
     speakerPhoto: string;
     description: string[];
     registerUrl: string;
-    widgetId?: string;
+    widgetScriptId?: string;
+    widgetScriptSrc?: string;
   };
 };
 
@@ -36,7 +37,8 @@ const schedule: ScheduleItem[] = [
         "Как сообщить клиенту о необходимости консультации психиатра, чтобы не усилить стигматизацию и не разрушить альянс.",
       ],
       registerUrl: "#",
-      widgetId: "1569437",
+      widgetScriptId: "963f78b8436fe8673a128facb48a052cf4845ae5",
+      widgetScriptSrc: "https://course.rosmededucation.ru/pl/lite/widget/script?id=1569437",
     },
   },
   {
@@ -138,34 +140,23 @@ const faqs = [
   },
 ];
 
-function WidgetIframe({ widgetId }: { widgetId: string }) {
-  const [height, setHeight] = useState(120);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  const src = `https://course.rosmededucation.ru/pl/lite/widget/widget?id=${widgetId}&ref=${encodeURIComponent(document.referrer)}&loc=${encodeURIComponent(document.location.href)}`;
+function WidgetButton({ scriptId, scriptSrc }: { scriptId: string; scriptSrc: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handler = (e: MessageEvent) => {
-      if (e.data?.uniqName === '963f78b8436fe8673a128facb48a052cf4845ae5' && e.data?.height) {
-        setHeight(e.data.height);
-      }
+    if (!containerRef.current) return;
+    const existing = document.getElementById(scriptId);
+    if (existing) existing.remove();
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.src = scriptSrc;
+    containerRef.current.appendChild(script);
+    return () => {
+      script.remove();
     };
-    window.addEventListener('message', handler);
-    return () => window.removeEventListener('message', handler);
-  }, []);
+  }, [scriptId, scriptSrc]);
 
-  return (
-    <iframe
-      ref={iframeRef}
-      src={src}
-      data-account-id="657567"
-      className="688"
-      id="e2dbc0fc6bab376ba0ed0b8f505240a6521b1118_688"
-      name="688"
-      allowFullScreen
-      style={{ width: '100%', height: `${height}px`, border: 'none', overflow: 'hidden', display: 'block' }}
-    />
-  );
+  return <div ref={containerRef} className="w-full" />;
 }
 
 function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void }) {
@@ -238,8 +229,8 @@ function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void
                 })}
               </div>
 
-              {d.widgetId ? (
-                <WidgetIframe widgetId={d.widgetId} />
+              {d.widgetScriptId && d.widgetScriptSrc ? (
+                <WidgetButton scriptId={d.widgetScriptId} scriptSrc={d.widgetScriptSrc} />
               ) : (
                 <a
                   href={d.registerUrl}

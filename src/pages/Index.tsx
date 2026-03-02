@@ -168,6 +168,29 @@ function WidgetIframe({ widgetId }: { widgetId: string }) {
   );
 }
 
+function WidgetModal({ widgetId, onClose }: { widgetId: string; onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-lg rounded-3xl bg-[#161616] border border-[#f0ede6]/10 shadow-2xl p-6"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-[#0f0f0f] border border-[#f0ede6]/10 text-[#9a9690] hover:text-[#f0ede6] transition-colors"
+        >
+          <Icon name="X" size={16} />
+        </button>
+        <p className="text-sm text-[#9a9690] mb-4">Регистрация на встречу</p>
+        <WidgetIframe widgetId={widgetId} />
+      </div>
+    </div>
+  );
+}
+
 function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void }) {
   const d = item.detail;
   return (
@@ -238,17 +261,13 @@ function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void
                 })}
               </div>
 
-              {d.widgetId ? (
-                <WidgetIframe widgetId={d.widgetId} />
-              ) : (
-                <a
-                  href={d.registerUrl}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
-                >
-                  Зарегистрироваться
-                  <Icon name="ArrowRight" size={18} />
-                </a>
-              )}
+              <a
+                href={d.registerUrl}
+                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#9B2242] text-white font-semibold rounded-2xl hover:bg-[#b82a50] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+              >
+                Зарегистрироваться
+                <Icon name="ArrowRight" size={18} />
+              </a>
             </>
           ) : (
             <>
@@ -275,11 +294,15 @@ function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void
 export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeEvent, setActiveEvent] = useState<ScheduleItem | null>(null);
+  const [widgetItemId, setWidgetItemId] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-[#f0ede6] font-body">
       {activeEvent?.detail && (
         <EventModal item={activeEvent} onClose={() => setActiveEvent(null)} />
+      )}
+      {widgetItemId && (
+        <WidgetModal widgetId={widgetItemId} onClose={() => setWidgetItemId(null)} />
       )}
 
       {/* HERO */}
@@ -558,13 +581,19 @@ export default function Index() {
                   <p className="text-sm text-[#9a9690] mt-1">{item.speaker}</p>
                 </div>
                 {item.confirmed && (
-                  <a
-                    href="#price"
-                    onClick={(e) => e.stopPropagation()}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (item.detail?.widgetId) {
+                        setWidgetItemId(item.detail.widgetId);
+                      } else {
+                        setActiveEvent(item);
+                      }
+                    }}
                     className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#9B2242] text-white text-sm font-semibold rounded-xl hover:bg-[#b82a50] transition-all duration-200"
                   >
                     Зарегистрироваться
-                  </a>
+                  </button>
                 )}
               </div>
             ))}

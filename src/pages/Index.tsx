@@ -144,19 +144,41 @@ function WidgetButton({ scriptId, scriptSrc }: { scriptId: string; scriptSrc: st
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
+
     const existing = document.getElementById(scriptId);
     if (existing) existing.remove();
+
     const script = document.createElement('script');
     script.id = scriptId;
     script.src = scriptSrc;
-    containerRef.current.appendChild(script);
+    script.async = true;
+    container.appendChild(script);
+
+    // виджет сам ставит overflow:hidden на parentNode — перебиваем
+    const observer = new MutationObserver(() => {
+      if (container.style.overflow === 'hidden') {
+        container.style.overflow = 'visible';
+      }
+    });
+    observer.observe(container, { attributes: true, attributeFilter: ['style'] });
+
     return () => {
-      script.remove();
+      observer.disconnect();
+      const s = document.getElementById(scriptId);
+      if (s) s.remove();
+      container.innerHTML = '';
     };
   }, [scriptId, scriptSrc]);
 
-  return <div ref={containerRef} className="w-full" />;
+  return (
+    <div
+      ref={containerRef}
+      className="w-full"
+      style={{ overflow: 'visible', minHeight: '60px' }}
+    />
+  );
 }
 
 function EventModal({ item, onClose }: { item: ScheduleItem; onClose: () => void }) {
